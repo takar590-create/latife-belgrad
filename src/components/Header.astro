@@ -22,6 +22,7 @@ const { lang, path } = Astro.props as { lang: Lang; path: string };
       </div>
     </a>
 
+    <!-- Desktop nav -->
     <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
       <a class="text-sm hover:opacity-80" href={withLang(lang, "/menu")}>
         {t(lang, "nav.menu")}
@@ -44,6 +45,33 @@ const { lang, path } = Astro.props as { lang: Lang; path: string };
           {t(lang, "cta.route")}
         </a>
       </div>
+
+      <!-- Mobile hamburger menu -->
+      <details class="relative md:hidden">
+        <summary
+          class="btn btn-ghost inline-flex h-10 w-10 items-center justify-center rounded-full"
+          aria-label="Menüyü aç"
+        >
+          ☰
+        </summary>
+
+        <div class="absolute right-0 mt-2 w-56 overflow-hidden rounded-2xl border border-black/10 bg-white shadow-soft">
+          <a class="block px-4 py-3 text-sm hover:bg-black/5" href={withLang(lang, "/menu")}>
+            {t(lang, "nav.menu")}
+          </a>
+          <a class="block px-4 py-3 text-sm hover:bg-black/5" href={withLang(lang, "/about")}>
+            {t(lang, "nav.about")}
+          </a>
+          <a class="block px-4 py-3 text-sm hover:bg-black/5" href={withLang(lang, "/contact")}>
+            {t(lang, "nav.contact")}
+          </a>
+        </div>
+
+        <style>
+          summary::-webkit-details-marker { display: none; }
+          details > summary { list-style: none; }
+        </style>
+      </details>
 
       <LanguageSwitcher lang={lang} path={path} />
     </div>

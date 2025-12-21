@@ -25,7 +25,6 @@ function priceToText(p: Price): string {
 }
 
 function catTitleKey(catKey: MenuCategory["key"]): string {
-  // i18n: menu.cat.breakfast, menu.cat.hot, menu.cat.cold, menu.cat.desserts
   return `menu.cat.${catKey}`;
 }
 
@@ -37,7 +36,6 @@ const cats = category ? menu.filter((c) => c.key === category) : menu;
 ---
 
 <section class="mt-2">
-  <!-- Empty state (search ile aç/kapa) -->
   <div
     id="menuEmpty"
     class="mt-6 hidden rounded-2xl bg-white p-5 text-sm text-muted shadow-ring"
@@ -67,13 +65,10 @@ const cats = category ? menu.filter((c) => c.key === category) : menu;
                 data-desc={(it.description || "").toLowerCase()}
               >
                 <div class="flex h-full flex-col sm:flex-row">
-                  <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) -->
-                  <div
-                    class="relative shrink-0"
-                    style="width: 100%; max-width: 220px;"
-                  >
+                  <!-- FIX: Mobilde full width, desktop'ta 220px -->
+                  <div class="relative w-full shrink-0 sm:w-[220px]">
                     <div
-                      class="h-40 w-full sm:h-full"
+                      class="relative h-44 w-full sm:h-full"
                       style="
                         background:
                           radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
@@ -81,26 +76,25 @@ const cats = category ? menu.filter((c) => c.key === category) : menu;
                           radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
                           rgba(246,252,252,1);
                       "
-                    ></div>
+                    >
+                      {(it as any).image ? (
+                        <img
+                          src={(it as any).image}
+                          alt={it.name}
+                          class="absolute inset-0 h-full w-full object-cover object-center"
+                          loading="lazy"
+                          decoding="async"
+                          onerror="this.remove()"
+                        />
+                      ) : null}
 
-                    {(it as any).image ? (
-                      <img
-                        src={(it as any).image}
-                        alt={it.name}
-                        class="absolute inset-0 h-full w-full object-cover"
-                        loading="lazy"
-                        onerror="this.remove()"
-                      />
-                    ) : null}
-
-                    <!-- ince highlight -->
-                    <div
-                      class="absolute inset-0"
-                      style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"
-                    ></div>
+                      <div
+                        class="absolute inset-0"
+                        style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"
+                      ></div>
+                    </div>
                   </div>
 
-                  <!-- Content -->
                   <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
                     <div class="flex items-start justify-between gap-3">
                       <div class="min-w-0">
@@ -141,7 +135,6 @@ const cats = category ? menu.filter((c) => c.key === category) : menu;
                       </div>
                     ) : null}
 
-                    <!-- micro accent -->
                     <div
                       class="mt-5 h-1 w-10 rounded-full transition"
                       style="background: rgba(86,199,193,.55);"
@@ -168,34 +161,32 @@ const cats = category ? menu.filter((c) => c.key === category) : menu;
                     data-desc={(it.description || "").toLowerCase()}
                   >
                     <div class="flex h-full flex-col sm:flex-row">
-                      <div
-                        class="relative shrink-0"
-                        style="width: 100%; max-width: 220px;"
-                      >
+                      <div class="relative w-full shrink-0 sm:w-[220px]">
                         <div
-                          class="h-40 w-full sm:h-full"
+                          class="relative h-44 w-full sm:h-full"
                           style="
                             background:
                               radial-gradient(circle at 20% 25%, rgba(76,59,42,.20), transparent 55%),
                               radial-gradient(circle at 80% 35%, rgba(86,199,193,.22), transparent 60%),
                               rgba(246,252,252,1);
                           "
-                        ></div>
+                        >
+                          {(it as any).image ? (
+                            <img
+                              src={(it as any).image}
+                              alt={it.name}
+                              class="absolute inset-0 h-full w-full object-cover object-center"
+                              loading="lazy"
+                              decoding="async"
+                              onerror="this.remove()"
+                            />
+                          ) : null}
 
-                        {(it as any).image ? (
-                          <img
-                            src={(it as any).image}
-                            alt={it.name}
-                            class="absolute inset-0 h-full w-full object-cover"
-                            loading="lazy"
-                            onerror="this.remove()"
-                          />
-                        ) : null}
-
-                        <div
-                          class="absolute inset-0"
-                          style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"
-                        ></div>
+                          <div
+                            class="absolute inset-0"
+                            style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"
+                          ></div>
+                        </div>
                       </div>
 
                       <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
@@ -254,7 +245,6 @@ const cats = category ? menu.filter((c) => c.key === category) : menu;
 
   <script is:inline>
     (() => {
-      // kart hover: çok abartmadan premium "lift"
       const cards = Array.from(document.querySelectorAll(".menu-row"));
       cards.forEach((c) => {
         c.addEventListener("mouseenter", () => {

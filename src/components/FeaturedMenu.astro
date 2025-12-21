@@ -34,27 +34,19 @@ function firstNonAlcoholItem(catKey: MenuCategoryKey) {
   const cat = menu.find((c) => c.key === catKey);
   if (!cat) return null;
 
-  // cold içinde alkol varsa, vitrine alkol olmayanı seç
   const items = cat.items || [];
   const nonAlcohol = items.find((x) => !(Array.isArray(x.tags) && x.tags.includes("alcohol")));
   return nonAlcohol ?? items[0] ?? null;
 }
 
-const picks = ([
-  "breakfast",
-  "hot",
-  "cold",
-  "desserts",
-] as MenuCategoryKey[]).map((key) => ({
+const picks = (["breakfast", "hot", "cold", "desserts"] as MenuCategoryKey[]).map((key) => ({
   key,
   item: firstNonAlcoholItem(key),
 }));
 ---
 
 <section class="mt-12">
-  <!-- Premium shell -->
   <div class="relative overflow-hidden rounded-3xl bg-white shadow-ring">
-    <!-- soft ambient background -->
     <div
       class="absolute inset-0 opacity-60"
       style="background:
@@ -75,31 +67,31 @@ const picks = ([
           </p>
         </div>
 
-        <a
-          class="btn btn-ghost"
-          href={withLang(lang, "/menu")}
-        >
+        <a class="btn btn-ghost" href={withLang(lang, "/menu")}>
           {t(lang, "cta.menu")}
           <span aria-hidden="true">→</span>
         </a>
       </div>
 
-      <!-- Picks grid -->
       <div class="mt-7 grid gap-4 md:grid-cols-2">
         {picks.map((p) => (
           <a
-            href={withLang(lang, `/menu/${p.key === "breakfast"
-              ? "kahvalti"
-              : p.key === "hot"
-              ? "sicak-icecekler"
-              : p.key === "cold"
-              ? "soguk-icecekler"
-              : "tatlilar"}`)}
+            href={withLang(
+              lang,
+              `/menu/${
+                p.key === "breakfast"
+                  ? "kahvalti"
+                  : p.key === "hot"
+                  ? "sicak-icecekler"
+                  : p.key === "cold"
+                  ? "soguk-icecekler"
+                  : "tatlilar"
+              }`
+            )}
             class="group relative overflow-hidden rounded-3xl bg-white/65 p-5 shadow-ring transition hover:shadow-soft"
             style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
             aria-label={t(lang, catTitleKey(p.key))}
           >
-            <!-- top row: category + price -->
             <div class="flex items-start justify-between gap-3">
               <div class="min-w-0">
                 <div class="text-xs font-medium text-muted">
@@ -132,26 +124,26 @@ const picks = ([
               {p.item?.description ?? t(lang, catDescKey(p.key))}
             </p>
 
-            <!-- media strip -->
+            <!-- FIX: Media artık tek container, gradient + image aynı katmanda -->
             <div class="mt-4 overflow-hidden rounded-2xl">
               <div
-                class="h-24 w-full"
+                class="relative h-24 w-full overflow-hidden"
                 style="background:
                   linear-gradient(90deg, rgba(86,199,193,.18), rgba(214,198,164,.14), rgba(76,59,42,.10));"
-              ></div>
-
-              {p.item?.image ? (
-                <img
-                  src={p.item.image}
-                  alt={p.item?.name ?? t(lang, catTitleKey(p.key))}
-                  class="h-24 w-full object-cover"
-                  loading="lazy"
-                  onerror="this.remove()"
-                />
-              ) : null}
+              >
+                {p.item?.image ? (
+                  <img
+                    src={p.item.image}
+                    alt={p.item?.name ?? t(lang, catTitleKey(p.key))}
+                    class="absolute inset-0 h-full w-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.remove()"
+                  />
+                ) : null}
+              </div>
             </div>
 
-            <!-- micro CTA -->
             <div class="mt-4 inline-flex items-center gap-2 text-sm font-medium">
               <span class="h-2 w-2 rounded-full bg-brand"></span>
               {t(lang, "menu.openCategory")}
@@ -161,10 +153,8 @@ const picks = ([
         ))}
       </div>
 
-      <!-- subtle footer line -->
       <div class="mt-7 hr"></div>
 
-      <!-- tiny note -->
       <div class="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-muted">
         <span>{t(lang, "menu.note")}</span>
         <span class="pill">Latife • {t(lang, "home.kicker")}</span>
