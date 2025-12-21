@@ -1,0 +1,36 @@
+---
+import type { Lang } from "@/i18n";
+import { LANGS, t } from "@/i18n";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import MenuView from "@/components/MenuView.astro";
+import type { MenuCategoryKey } from "@/data/menu";
+
+export async function getStaticPaths() {
+  const categories: MenuCategoryKey[] = ["breakfast", "hot", "cold", "desserts"];
+  return LANGS.flatMap((lang) =>
+    categories.map((category) => ({ params: { lang, category } }))
+  );
+}
+
+const { lang, category } = Astro.params as { lang: Lang; category: MenuCategoryKey };
+---
+
+<BaseLayout
+  lang={lang}
+  path={`/menu/${category}`}
+  title={`${t(lang, `menu.cat.${category}`)} | ${t(lang, "menu.title")}`}
+  description="Latife menu"
+>
+  <!-- Bu sayfada sadece ilgili kategori -->
+  <div class="mb-8">
+    <a class="text-sm text-muted underline decoration-brand/50 underline-offset-4" href={`/${lang}/menu`}>
+      ← {t(lang, "menu.back")}
+    </a>
+
+    <h1 class="mt-3 font-display text-4xl">{t(lang, `menu.cat.${category}`)}</h1>
+    <p class="mt-2 text-muted">{t(lang, `menu.cat.${category}Desc`)}</p>
+  </div>
+
+  <!-- burada sadece seçilen kategori gösterilir -->
+  <MenuView lang={lang} category={category} />
+</BaseLayout>

@@ -1,0 +1,440 @@
+<!DOCTYPE html><html lang="tr"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sıcak İçecekler | Menü</title><meta name="description" content="Latife menu"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet"><link rel="icon" type="image/png" href="/favicon.png"><link rel="stylesheet" href="/_astro/about.Dq5r6XRD.css"></head> <body class="min-h-screen overflow-x-hidden"> <header class="site-header sticky top-0 z-40 border-b border-black/10 bg-bg/80 backdrop-blur" style="height: var(--site-header-h, 64px);"> <div class="container-pad flex h-16 items-center justify-between gap-3"> <a class="flex items-center gap-3" href="/tr" aria-label="Home"> <div class="h-10 w-10 rounded-full bg-brand shadow-ring"></div> <div class="leading-tight"> <div class="font-display text-lg">Latife</div> <div class="text-[11px] tracking-[0.18em] text-muted">BELGRADE</div> </div> </a> <nav class="hidden items-center gap-6 md:flex" aria-label="Primary"> <a class="text-sm hover:opacity-80" href="/tr/menu"> Menü </a> <a class="text-sm hover:opacity-80" href="/tr/about"> Hakkımızda </a> <a class="text-sm hover:opacity-80" href="/tr/contact"> İletişim </a> </nav> <div class="flex items-center gap-2"> <a class="btn btn-ghost hidden sm:inline-flex" href="tel:0611435845"> Ara </a> <div class="hidden sm:block"> <a class="btn btn-primary" href="https://www.google.com/maps/place/LAT%C4%B0FE+BELGRAD/data=!4m2!3m1!1s0x475a7b49b62bfc4f:0x8cc2c0ae0f219cea?sa=X&ved=1t:242&ictx=111" target="_blank" rel="noreferrer"> Yol Tarifi </a> </div> <div class="flex items-center gap-2"> <a class="pill transition " style="background: rgba(86,199,193,.80);" href="/tr/menu/hot" aria-current="page"> TR </a><a class="pill transition hover:bg-white" href="/sr/menu/hot"> SR </a><a class="pill transition hover:bg-white" href="/en/menu/hot"> EN </a> </div> </div> </div> </header> <!-- Menü gibi sayfalarda sabit UI için: (fixed bar burada, main dışında) -->  <main class="container-pad py-10">   <div class="mb-8"> <a class="text-sm text-muted underline decoration-brand/50 underline-offset-4" href="/tr/menu">
+← Menü </a> <h1 class="mt-3 font-display text-4xl">Sıcak İçecekler</h1> <p class="mt-2 text-muted">Kahve &amp; sıcak içecekler.</p> </div>  <section class="mt-2"> <!-- Empty state (search ile aç/kapa) --> <div id="menuEmpty" class="mt-6 hidden rounded-2xl bg-white p-5 text-sm text-muted shadow-ring"> Sonuç bulunamadı. </div> <div class="mt-6 space-y-12"> <section id="hot" class="scroll-mt-[180px]"> <div class="flex items-end justify-between gap-4"> <h2 class="font-display text-2xl">Sıcak İçecekler</h2> <div class="hr w-24"></div> </div> <div class="mt-4 grid gap-4 md:grid-cols-2"> <article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="coffee + cheesecake" data-desc="kahve yanında cheesecake ile kombin."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/combo-cheesecake.jpg" alt="Coffee + Cheesecake" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Coffee + Cheesecake </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Kahve yanında cheesecake ile kombin. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 850 RSD </span> </div> </div> <div class="mt-4 flex flex-wrap gap-2"> <span class="pill">combo</span> </div> <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="coffee + san sebastian" data-desc="kahve yanında san sebastian ile kombin."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/combo-sanseb.jpg" alt="Coffee + San Sebastian" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Coffee + San Sebastian </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Kahve yanında San Sebastian ile kombin. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 900 RSD </span> </div> </div> <div class="mt-4 flex flex-wrap gap-2"> <span class="pill">combo</span> </div> <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="coffee + carrot cake" data-desc="kahve yanında havuçlu kek ile kombin."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/combo-carrot.jpg" alt="Coffee + Carrot Cake" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Coffee + Carrot Cake </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Kahve yanında havuçlu kek ile kombin. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 800 RSD </span> </div> </div> <div class="mt-4 flex flex-wrap gap-2"> <span class="pill">combo</span> </div> <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="coffee + tiramisu" data-desc="kahve yanında tiramisu ile kombin."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/combo-tiramisu.jpg" alt="Coffee + Tiramisu" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Coffee + Tiramisu </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Kahve yanında tiramisu ile kombin. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 900 RSD </span> </div> </div> <div class="mt-4 flex flex-wrap gap-2"> <span class="pill">combo</span> </div> <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="coffee + cookie" data-desc="kahve yanında cookie ile kombin."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/combo-cookie.jpg" alt="Coffee + Cookie" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Coffee + Cookie </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Kahve yanında cookie ile kombin. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 750 RSD </span> </div> </div> <div class="mt-4 flex flex-wrap gap-2"> <span class="pill">combo</span> </div> <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="coffee + eclair" data-desc="kahve yanında eclair ile kombin."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/combo-eclair.jpg" alt="Coffee + Eclair" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Coffee + Eclair </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Kahve yanında eclair ile kombin. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 750 RSD </span> </div> </div> <div class="mt-4 flex flex-wrap gap-2"> <span class="pill">combo</span> </div> <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="coffee + mosaic cake" data-desc="kahve yanında mozaik kek ile kombin."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/combo-mosaic.jpg" alt="Coffee + Mosaic Cake" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Coffee + Mosaic Cake </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Kahve yanında mozaik kek ile kombin. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 800 RSD </span> </div> </div> <div class="mt-4 flex flex-wrap gap-2"> <span class="pill">combo</span> </div> <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="coffee + magnolia" data-desc="kahve yanında magnolia ile kombin."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/combo-magnolia.jpg" alt="Coffee + Magnolia" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Coffee + Magnolia </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Kahve yanında magnolia ile kombin. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 800 RSD </span> </div> </div> <div class="mt-4 flex flex-wrap gap-2"> <span class="pill">combo</span> </div> <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="turkish coffee" data-desc="geleneksel türk kahvesi."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/turkish-coffee.jpg" alt="Turkish coffee" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Turkish coffee </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Geleneksel Türk kahvesi. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> S: 320 / D: 440 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="cavalry turkish coffee" data-desc="özel türk kahvesi sunumu."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/cavalry-turkish.jpg" alt="Cavalry Turkish Coffee" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Cavalry Turkish Coffee </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Özel Türk kahvesi sunumu. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 330 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="espresso" data-desc="klasik espresso shot."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/espresso.jpg" alt="Espresso" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Espresso </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Klasik espresso shot. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> S: 270 / D: 350 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="espresso macchiato" data-desc="bir dokunuş süt köpüğü ile espresso."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/espresso-macchiato.jpg" alt="Espresso Macchiato" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Espresso Macchiato </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Bir dokunuş süt köpüğü ile espresso. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> S: 310 / D: 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="espresso con panna" data-desc="kremalı espresso."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/espresso-con-panna.jpg" alt="Espresso Con Panna" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Espresso Con Panna </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Kremalı espresso. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 330 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="espresso cubana" data-desc="aromalı espresso çeşidi."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/espresso-cubana.jpg" alt="Espresso Cubana" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Espresso Cubana </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Aromalı espresso çeşidi. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 310 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="americano" data-desc="espresso + sıcak su ile hafif içim."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/americano.jpg" alt="Americano" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Americano </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Espresso + sıcak su ile hafif içim. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 330 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="mocha cocostar" data-desc="çikolata &#38; kahve uyumu."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/mocha-cocostar.jpg" alt="Mocha Cocostar" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Mocha Cocostar </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Çikolata &amp; kahve uyumu. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 460 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="cappucino" data-desc="süt köpüğü ile dengeli kahve."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/cappucino.jpg" alt="Cappucino" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Cappucino </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Süt köpüğü ile dengeli kahve. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 350 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="swiss orange mocha" data-desc="portakal dokunuşlu mocha."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/swiss-orange-mocha.jpg" alt="Swiss Orange Mocha" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Swiss Orange Mocha </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Portakal dokunuşlu mocha. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 460 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="flat white" data-desc="yoğun espresso, ipeksi süt."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/flat-white.jpg" alt="Flat White" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Flat White </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Yoğun espresso, ipeksi süt. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 400 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="cookies latte" data-desc="cookie aromalı latte."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/cookies-latte.jpg" alt="Cookies Latte" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Cookies Latte </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Cookie aromalı latte. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 430 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="cortado" data-desc="dengeli sütlü espresso."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/cortado.jpg" alt="Cortado" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Cortado </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Dengeli sütlü espresso. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 320 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="caramel macchiato" data-desc="karamel aromalı macchiato."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/caramel-macchiato.jpg" alt="Caramel Macchiato" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Caramel Macchiato </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Karamel aromalı macchiato. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 390 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="latte macchiato" data-desc="katmanlı sütlü kahve."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/latte-macchiato.jpg" alt="Latte Macchiato" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Latte Macchiato </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Katmanlı sütlü kahve. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 400 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="latte" data-desc="yumuşak içimli sütlü kahve."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/latte.jpg" alt="Latte" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Latte </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Yumuşak içimli sütlü kahve. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 350 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="mocha" data-desc="çikolata &#38; espresso karışımı."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/mocha.jpg" alt="Mocha" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Mocha </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Çikolata &amp; espresso karışımı. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 400 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="turkish tea" data-desc="klasik türk çayı."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/turkish-tea.jpg" alt="Turkish Tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Turkish Tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Klasik Türk çayı. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> S: 250 / D: 380 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="rose bouquet tea" data-desc="gül aromalı bitki çayı."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/rose-bouquet.jpg" alt="Rose Bouquet Tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Rose Bouquet Tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Gül aromalı bitki çayı. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="orange tea" data-desc="portakal aromalı çay."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/orange-tea.jpg" alt="Orange Tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Orange Tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Portakal aromalı çay. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="early grey tea" data-desc="bergamot aromalı klasik çay."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/earl-grey.jpg" alt="Early Grey Tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Early Grey Tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Bergamot aromalı klasik çay. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="lemon ginger tea" data-desc="limon &#38; zencefil çayı."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/lemon-ginger.jpg" alt="Lemon Ginger Tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Lemon Ginger Tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Limon &amp; zencefil çayı. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="rooibos tea" data-desc="rooibos bitki çayı."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/rooibos.jpg" alt="Rooibos tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Rooibos tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Rooibos bitki çayı. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="green tea" data-desc="yeşil çay."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/green-tea.jpg" alt="Green Tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Green Tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Yeşil çay. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="sage tea" data-desc="adaçayı."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/sage-tea.jpg" alt="Sage Tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Sage Tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Adaçayı. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="winter tea" data-desc="kış çayı karışımı."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/winter-tea.jpg" alt="Winter tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Winter tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Kış çayı karışımı. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="echinacea tea" data-desc="ekinezya çayı."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/echinacea.jpg" alt="Echinacea Tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Echinacea Tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Ekinezya çayı. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="chamomile tea" data-desc="papatya çayı."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/chamomile.jpg" alt="Chamomile Tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Chamomile Tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Papatya çayı. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="fennel tea" data-desc="rezene çayı."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/fennel.jpg" alt="Fennel Tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Fennel Tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Rezene çayı. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article><article class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition" style="transform: translateZ(0);" data-name="lemon balm tea" data-desc="oğul otu (melisa) çayı."> <div class="flex h-full flex-col sm:flex-row"> <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) --> <div class="relative shrink-0" style="width: 100%; max-width: 220px;"> <div class="h-40 w-full sm:h-full" style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "></div> <img src="/images/items/lemon-balm.jpg" alt="Lemon Balm Tea" class="absolute inset-0 h-full w-full object-cover" loading="lazy" onerror="this.remove()"> <!-- ince highlight --> <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"></div> </div> <!-- Content --> <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6"> <div class="flex items-start justify-between gap-3"> <div class="min-w-0"> <div class="font-medium leading-tight group-hover:opacity-90"> Lemon Balm Tea </div> <p class="mt-1 text-sm text-muted" style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "> Oğul otu (melisa) çayı. </p> </div> <div class="shrink-0"> <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums" style="background: rgba(86,199,193,.15);"> 420 RSD </span> </div> </div>  <!-- micro accent --> <div class="mt-5 h-1 w-10 rounded-full transition" style="background: rgba(86,199,193,.55);"></div> </div> </div> </article> </div>  </section> </div> <script>
+    (() => {
+      // kart hover: çok abartmadan premium "lift"
+      const cards = Array.from(document.querySelectorAll(".menu-row"));
+      cards.forEach((c) => {
+        c.addEventListener("mouseenter", () => {
+          c.style.transform = "translateY(-2px)";
+        });
+        c.addEventListener("mouseleave", () => {
+          c.style.transform = "translateY(0px)";
+        });
+      });
+    })();
+  </script> </section>  </main> <footer class="mt-16 border-t border-black/10"> <div class="container-pad py-10"> <div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between"> <div> <div class="font-display text-2xl">Latife</div> <div class="mt-2 text-sm text-muted">Zmaj Jovina 7, lokal 1, 11000, Beograd</div> <a class="mt-3 inline-block text-sm underline underline-offset-4" style="text-decoration-color: rgba(86,199,193,.6);" href="tel:0611435845"> 0611435845 </a> </div> <div class="grid grid-cols-2 gap-6 text-sm"> <div> <div class="font-medium" style="color: rgba(27,20,20,.8);"> Menü </div> <div class="mt-2 space-y-2 text-muted"> <a class="block hover:opacity-80" href="/tr/menu#combo"> Combo Menü </a> <a class="block hover:opacity-80" href="/tr/menu#coffee"> Kahve </a> <a class="block hover:opacity-80" href="/tr/menu#tea"> Çay </a> </div> </div> <div> <div class="font-medium" style="color: rgba(27,20,20,.8);"> Sosyal medya </div> <div class="mt-2 space-y-2 text-muted"> <a class="block hover:opacity-80" href="https://www.instagram.com/latifebelgrade?igsh=MWVjdHg1Y3p2cnpjcA==" target="_blank" rel="noreferrer">
+Instagram
+</a> <a class="block hover:opacity-80" href="https://www.tiktok.com/@latifebelgrade?_r=1&_t=ZS-92KMJ6PsG3k" target="_blank" rel="noreferrer">
+TikTok
+</a> <a class="block hover:opacity-80" href="https://www.google.com/maps/place/LAT%C4%B0FE+BELGRAD/data=!4m2!3m1!1s0x475a7b49b62bfc4f:0x8cc2c0ae0f219cea?sa=X&ved=1t:242&ictx=111" target="_blank" rel="noreferrer">
+Google Maps
+</a> </div> </div> </div> </div> <div class="mt-10 text-xs text-muted">
+© 2025 Latife Belgrade </div> </div> </footer> </body></html>

@@ -1,0 +1,51 @@
+---
+import type { Lang } from "@/i18n";
+import { t } from "@/i18n";
+import { withLang } from "@/lib/paths";
+import { site, phoneHref } from "@/lib/site";
+import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
+
+const { lang, path } = Astro.props as { lang: Lang; path: string };
+---
+
+<header
+  class="site-header sticky top-0 z-40 border-b border-black/10 bg-bg/80 backdrop-blur"
+  style="height: var(--site-header-h, 64px);"
+>
+  <div class="container-pad flex h-16 items-center justify-between gap-3">
+    <a class="flex items-center gap-3" href={withLang(lang, "/")} aria-label="Home">
+      <div class="h-10 w-10 rounded-full bg-brand shadow-ring"></div>
+
+      <div class="leading-tight">
+        <div class="font-display text-lg">{site.shortName}</div>
+        <div class="text-[11px] tracking-[0.18em] text-muted">BELGRADE</div>
+      </div>
+    </a>
+
+    <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
+      <a class="text-sm hover:opacity-80" href={withLang(lang, "/menu")}>
+        {t(lang, "nav.menu")}
+      </a>
+      <a class="text-sm hover:opacity-80" href={withLang(lang, "/about")}>
+        {t(lang, "nav.about")}
+      </a>
+      <a class="text-sm hover:opacity-80" href={withLang(lang, "/contact")}>
+        {t(lang, "nav.contact")}
+      </a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a class="btn btn-ghost hidden sm:inline-flex" href={phoneHref(site.phoneLocal)}>
+        {t(lang, "cta.call")}
+      </a>
+
+      <div class="hidden sm:block">
+        <a class="btn btn-primary" href={site.mapsUrl} target="_blank" rel="noreferrer">
+          {t(lang, "cta.route")}
+        </a>
+      </div>
+
+      <LanguageSwitcher lang={lang} path={path} />
+    </div>
+  </div>
+</header>

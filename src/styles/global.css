@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------
+   Theme tokens (from logo + venue photos)
+--------------------------------------------------------- */
+:root{
+  --font-display: "Playfair Display";
+  --font-body: "Inter";
+
+  /* Palette */
+  --c-bg: 246 252 252;         /* #F6FCFC */
+  --c-panel: 255 255 255;      /* white */
+  --c-ink: 27 20 20;           /* #1B1414 */
+  --c-muted: 106 98 98;        /* muted text */
+  --c-brand: 86 199 193;       /* #56C7C1 */
+  --c-sand: 214 198 164;       /* #D6C6A4 */
+  --c-espresso: 76 59 42;      /* #4C3B2A */
+
+  /* Header height (h-16 = 64px) */
+  --site-header-h: 64px;       /* ✅ tek standart */
+}
+
+html, body { height: 100%; }
+
+body{
+  background: rgb(var(--c-bg));
+  color: rgb(var(--c-ink));
+  font-family: var(--font-body), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+::selection { background: rgba(86,199,193,.25); }
+
+/* nicer focus */
+:focus-visible{
+  outline: 2px solid rgba(86,199,193,.8);
+  outline-offset: 2px;
+}
+
+a { color: inherit; }
+
+.container-pad{
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+/* tokens as utility-ish helpers (projede kullanıyorsun) */
+.text-muted{ color: rgb(var(--c-muted)); }
+.bg-bg{ background: rgb(var(--c-bg)); }
+.border-brand{ border-color: rgba(86,199,193,.6); }
+.bg-brand{ background: rgb(var(--c-brand)); }
+.text-ink{ color: rgb(var(--c-ink)); }
+.font-display{ font-family: var(--font-display), ui-serif, Georgia, "Times New Roman", serif; }
+
+/* subtle shadow ring */
+.shadow-ring{
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 10px 30px rgba(0,0,0,.06);
+}
+
+.btn{
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 10px 30px rgba(0,0,0,.06);
+  transition: transform .12s ease, filter .12s ease, background .12s ease;
+}
+.btn:active{ transform: translateY(1px); }
+
+.btn-primary{
+  background: rgb(var(--c-brand));
+  color: rgb(var(--c-ink));
+}
+.btn-primary:hover{ filter: brightness(.97); }
+
+.btn-ghost{
+  background: rgba(255,255,255,.70);
+}
+.btn-ghost:hover{ background: rgba(255,255,255,.92); }
+
+.pill{
+  @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+  background: rgba(255,255,255,.70);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 10px 30px rgba(0,0,0,.06);
+}
+
+.hr{
+  height: 1px;
+  background: rgba(0,0,0,.08);
+}
+
+/* scrollbar hide helper */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* =========================================================
+   MENU FILTER BAR — STABIL FIXED
+========================================================= */
+
+/* Tek kaynak: .menu-fixedbar */
+.menu-fixedbar{
+  position: fixed;
+  top: var(--site-header-h);
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+
+  /* ✅ premium + okunur */
+  background: rgba(255,255,255,.07);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Eğer bir yerde istemeden transform vs uygulanırsa fixed'i kurtarmaya yardım */
+#menuFixedBar{
+  transform: none !important;
+  will-change: transform;
+}
+
+/* Aktif kategori pill görünümü */
+.menu-pill{
+  transition: background .15s ease, box-shadow .15s ease, transform .12s ease;
+}
+.menu-pill:hover{ transform: translateY(-1px); }
+
+.menu-pill-active{
+  background: rgba(86,199,193,.30) !important;
+  box-shadow: 0 0 0 1px rgba(86,199,193,.45) !important;
+}
+
+/* Anchor ile gidince fixed header + fixed bar altında saklanmasın */
+section[id]{
+  scroll-margin-top: 180px;
+}
+/* =========================================================
+   SOCIAL DOCK — sağ altta sabit, premium, içerik engellemez
+========================================================= */
+.social-dock{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9998; /* header 10000, menuFixedBar 9999; bu onların altında kalır */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  /* içerik üstüne “çok” binmesin diye küçük */
+  pointer-events: auto;
+}
+
+/* küçük ekranlarda biraz daha içeri al */
+@media (max-width: 640px){
+  .social-dock{
+    right: 12px;
+    bottom: 12px;
+    gap: 8px;
+  }
+}
+
+.social-dock__btn{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 12px 30px rgba(0,0,0,.10);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition: transform .12s ease, filter .12s ease, background .12s ease;
+}
+
+.social-dock__btn:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.86);
+}
+
+.social-dock__btn:active{
+  transform: translateY(0px);
+}
+
+.social-dock__icon{
+  width: 20px;
+  height: 20px;
+  color: rgb(var(--c-ink));
+  opacity: .92;
+  transition: transform .12s ease, opacity .12s ease;
+}
+
+.social-dock__btn:hover .social-dock__icon{
+  transform: translateY(-1px);
+  opacity: 1;
+}
+
+
+/* hafif marka vurgusu (paletinle uyumlu, abartı renk yok) */
+.social-dock__btn--tiktok:hover{
+  box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 14px 34px rgba(0,0,0,.12), 0 0 0 3px rgba(76,59,42,.12);
+}
+.social-dock__btn--instagram:hover{
+  box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 14px 34px rgba(0,0,0,.12), 0 0 0 3px rgba(214,198,164,.20);
+}
+.social-dock__btn--maps:hover{
+  box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 14px 34px rgba(0,0,0,.12), 0 0 0 3px rgba(86,199,193,.20);
+}
+
+/* kullanıcı dock'un altını kapatmasın diye ana içerikle çakışma azaltma */
+@media (min-width: 768px){
+  .social-dock{
+    bottom: 22px;
+    right: 22px;
+  }
+}
+/* =========================================================
+   INTRO VIDEO HERO — Fullscreen premium entry
+========================================================= */
+.intro-video{
+  position: relative;
+  width: 100%;
+  min-height: calc(100svh - var(--site-header-h));
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+.intro-video__media{
+  position: absolute;
+  inset: 0;
+}
+
+.intro-video__video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.98) contrast(1.02);
+  transform: translateZ(0);
+}
+
+.intro-video__overlay{
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(86,199,193,.22), transparent 55%),
+    radial-gradient(circle at 84% 30%, rgba(214,198,164,.20), transparent 60%),
+    linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.35) 45%, rgba(0,0,0,.20) 100%);
+}
+
+.intro-video__grain{
+  position: absolute;
+  inset: 0;
+  opacity: .10;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.intro-video__content{
+  position: relative;
+  min-height: calc(100svh - var(--site-header-h));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 18px;
+  padding-bottom: 34px;
+}
+
+.intro-video__card{
+  width: min(860px, 100%);
+  border-radius: 28px;
+  padding: 28px;
+  color: rgba(255,255,255,.95);
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 18px 45px rgba(0,0,0,.28);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.intro-video__card .pill{
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: none;
+  color: rgba(255,255,255,.90);
+}
+
+.intro-video__card .btn-ghost{
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.16);
+  color: rgba(255,255,255,.92);
+}
+.intro-video__card .btn-ghost:hover{
+  background: rgba(255,255,255,.20);
+}
+
+.intro-video__down{
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: 0 12px 30px rgba(0,0,0,.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform .12s ease, filter .12s ease, background .12s ease;
+}
+.intro-video__down:hover{ transform: translateX(-50%) translateY(-1px); background: rgba(255,255,255,.20); }
+
+.intro-video__downIcon{
+  font-size: 22px;
+  line-height: 1;
+  color: rgba(255,255,255,.92);
+  transform: translateY(-1px);
+}
+
+/* Reduced motion: video yerine poster/overlay kalsın */
+@media (prefers-reduced-motion: reduce){
+  .intro-video__video{ display: none; }
+}

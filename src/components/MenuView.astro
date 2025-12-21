@@ -1,0 +1,269 @@
+---
+import type { Lang } from "@/i18n";
+import { t } from "@/i18n";
+import { menu, type MenuCategory, type MenuCategoryKey, type Price } from "@/data/menu";
+
+const { lang, category } = Astro.props as {
+  lang: Lang;
+  category?: MenuCategoryKey;
+};
+
+function priceToText(p: Price): string {
+  if (typeof p === "number") return `${p} RSD`;
+
+  if ("single" in p) {
+    const s = p.single;
+    const d = p.double;
+    return d ? `S: ${s} / D: ${d} RSD` : `S: ${s} RSD`;
+  }
+
+  if ("size" in p) {
+    return `${p.size}: ${p.price} RSD`;
+  }
+
+  return "";
+}
+
+function catTitleKey(catKey: MenuCategory["key"]): string {
+  // i18n: menu.cat.breakfast, menu.cat.hot, menu.cat.cold, menu.cat.desserts
+  return `menu.cat.${catKey}`;
+}
+
+function isAlcohol(it: { tags?: string[] }) {
+  return Array.isArray(it.tags) && it.tags.includes("alcohol");
+}
+
+const cats = category ? menu.filter((c) => c.key === category) : menu;
+---
+
+<section class="mt-2">
+  <!-- Empty state (search ile aç/kapa) -->
+  <div
+    id="menuEmpty"
+    class="mt-6 hidden rounded-2xl bg-white p-5 text-sm text-muted shadow-ring"
+  >
+    {t(lang, "menu.empty")}
+  </div>
+
+  <div class="mt-6 space-y-12">
+    {cats.map((cat) => {
+      const isCold = cat.key === "cold";
+      const alcoholItems = isCold ? cat.items.filter(isAlcohol) : [];
+      const normalItems = isCold ? cat.items.filter((x) => !isAlcohol(x)) : cat.items;
+
+      return (
+        <section id={cat.key} class="scroll-mt-[180px]">
+          <div class="flex items-end justify-between gap-4">
+            <h2 class="font-display text-2xl">{t(lang, catTitleKey(cat.key))}</h2>
+            <div class="hr w-24"></div>
+          </div>
+
+          <div class="mt-4 grid gap-4 md:grid-cols-2">
+            {normalItems.map((it) => (
+              <article
+                class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition"
+                style="transform: translateZ(0);"
+                data-name={(it.name || "").toLowerCase()}
+                data-desc={(it.description || "").toLowerCase()}
+              >
+                <div class="flex h-full flex-col sm:flex-row">
+                  <!-- Media / placeholder (görsel yoksa premium kart boş kalmaz) -->
+                  <div
+                    class="relative shrink-0"
+                    style="width: 100%; max-width: 220px;"
+                  >
+                    <div
+                      class="h-40 w-full sm:h-full"
+                      style="
+                        background:
+                          radial-gradient(circle at 20% 25%, rgba(86,199,193,.35), transparent 55%),
+                          radial-gradient(circle at 80% 35%, rgba(214,198,164,.30), transparent 60%),
+                          radial-gradient(circle at 55% 85%, rgba(76,59,42,.18), transparent 60%),
+                          rgba(246,252,252,1);
+                      "
+                    ></div>
+
+                    {(it as any).image ? (
+                      <img
+                        src={(it as any).image}
+                        alt={it.name}
+                        class="absolute inset-0 h-full w-full object-cover"
+                        loading="lazy"
+                        onerror="this.remove()"
+                      />
+                    ) : null}
+
+                    <!-- ince highlight -->
+                    <div
+                      class="absolute inset-0"
+                      style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"
+                    ></div>
+                  </div>
+
+                  <!-- Content -->
+                  <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
+                    <div class="flex items-start justify-between gap-3">
+                      <div class="min-w-0">
+                        <div class="font-medium leading-tight group-hover:opacity-90">
+                          {it.name}
+                        </div>
+
+                        <p
+                          class="mt-1 text-sm text-muted"
+                          style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "
+                        >
+                          {it.description}
+                        </p>
+                      </div>
+
+                      <div class="shrink-0">
+                        <span
+                          class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums"
+                          style="background: rgba(86,199,193,.15);"
+                        >
+                          {priceToText(it.price)}
+                        </span>
+                      </div>
+                    </div>
+
+                    {it.tags?.length ? (
+                      <div class="mt-4 flex flex-wrap gap-2">
+                        {it.tags
+                          .filter((tag) => tag !== "alcohol")
+                          .map((tag) => (
+                            <span class="pill">{tag}</span>
+                          ))}
+                      </div>
+                    ) : null}
+
+                    <!-- micro accent -->
+                    <div
+                      class="mt-5 h-1 w-10 rounded-full transition"
+                      style="background: rgba(86,199,193,.55);"
+                    ></div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {isCold && alcoholItems.length > 0 ? (
+            <>
+              <div class="mt-10 flex items-end justify-between gap-4">
+                <h3 class="font-display text-xl">{t(lang, "menu.alcohol")}</h3>
+                <div class="hr w-24"></div>
+              </div>
+
+              <div class="mt-4 grid gap-4 md:grid-cols-2">
+                {alcoholItems.map((it) => (
+                  <article
+                    class="menu-row group overflow-hidden rounded-3xl bg-white shadow-ring transition"
+                    style="transform: translateZ(0);"
+                    data-name={(it.name || "").toLowerCase()}
+                    data-desc={(it.description || "").toLowerCase()}
+                  >
+                    <div class="flex h-full flex-col sm:flex-row">
+                      <div
+                        class="relative shrink-0"
+                        style="width: 100%; max-width: 220px;"
+                      >
+                        <div
+                          class="h-40 w-full sm:h-full"
+                          style="
+                            background:
+                              radial-gradient(circle at 20% 25%, rgba(76,59,42,.20), transparent 55%),
+                              radial-gradient(circle at 80% 35%, rgba(86,199,193,.22), transparent 60%),
+                              rgba(246,252,252,1);
+                          "
+                        ></div>
+
+                        {(it as any).image ? (
+                          <img
+                            src={(it as any).image}
+                            alt={it.name}
+                            class="absolute inset-0 h-full w-full object-cover"
+                            loading="lazy"
+                            onerror="this.remove()"
+                          />
+                        ) : null}
+
+                        <div
+                          class="absolute inset-0"
+                          style="background: linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 55%);"
+                        ></div>
+                      </div>
+
+                      <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
+                        <div class="flex items-start justify-between gap-3">
+                          <div class="min-w-0">
+                            <div class="font-medium leading-tight group-hover:opacity-90">
+                              {it.name}
+                            </div>
+
+                            <p
+                              class="mt-1 text-sm text-muted"
+                              style="
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;
+                              "
+                            >
+                              {it.description}
+                            </p>
+                          </div>
+
+                          <div class="shrink-0">
+                            <span
+                              class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums"
+                              style="background: rgba(86,199,193,.15);"
+                            >
+                              {priceToText(it.price)}
+                            </span>
+                          </div>
+                        </div>
+
+                        {it.tags?.length ? (
+                          <div class="mt-4 flex flex-wrap gap-2">
+                            {it.tags.map((tag) => (
+                              <span class="pill">{tag}</span>
+                            ))}
+                          </div>
+                        ) : null}
+
+                        <div
+                          class="mt-5 h-1 w-10 rounded-full transition"
+                          style="background: rgba(86,199,193,.55);"
+                        ></div>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </>
+          ) : null}
+        </section>
+      );
+    })}
+  </div>
+
+  <script is:inline>
+    (() => {
+      // kart hover: çok abartmadan premium "lift"
+      const cards = Array.from(document.querySelectorAll(".menu-row"));
+      cards.forEach((c) => {
+        c.addEventListener("mouseenter", () => {
+          c.style.transform = "translateY(-2px)";
+        });
+        c.addEventListener("mouseleave", () => {
+          c.style.transform = "translateY(0px)";
+        });
+      });
+    })();
+  </script>
+</section>

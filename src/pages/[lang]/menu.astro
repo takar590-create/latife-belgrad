@@ -1,0 +1,99 @@
+---
+import type { Lang } from "@/i18n";
+import { LANGS, t } from "@/i18n";
+import { withLang } from "@/lib/paths";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+
+const categories = [
+  {
+    slug: "kahvalti",
+    titleKey: "menu.cat.breakfast",
+    descKey: "menu.cat.breakfastDesc",
+    img: "/images/menu/kahvalti.jpg",
+  },
+  {
+    slug: "sicak-icecekler",
+    titleKey: "menu.cat.hot",
+    descKey: "menu.cat.hotDesc",
+    img: "/images/menu/sicak.jpg",
+  },
+  {
+    slug: "soguk-icecekler",
+    titleKey: "menu.cat.cold",
+    descKey: "menu.cat.coldDesc",
+    img: "/images/menu/soguk.jpg",
+  },
+  {
+    slug: "tatlilar",
+    titleKey: "menu.cat.desserts",
+    descKey: "menu.cat.dessertsDesc",
+    img: "/images/menu/tatlilar.jpg",
+  },
+];
+---
+
+<BaseLayout
+  lang={lang}
+  path="/menu"
+  title={`${t(lang, "menu.title")} | Latife`}
+  description="Latife menu categories"
+>
+  <div class="mb-10">
+    <h1 class="font-display text-4xl">{t(lang, "menu.title")}</h1>
+    <p class="mt-2 text-muted">{t(lang, "menu.categoriesKicker")}</p>
+  </div>
+
+  <!-- BigChefs style category grid -->
+  <div class="grid gap-5 md:grid-cols-2">
+    {categories.map((c) => (
+      <a
+        href={withLang(lang, `/menu/${c.slug}`)}
+        class="group relative overflow-hidden rounded-3xl bg-white shadow-ring transition hover:shadow-soft"
+        style="min-height: 260px;"
+        aria-label={t(lang, c.titleKey)}
+      >
+        <img
+          src={c.img}
+          alt={t(lang, c.titleKey)}
+          class="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
+
+        <!-- overlay -->
+        <div
+          class="absolute inset-0"
+          style="background:
+            linear-gradient(90deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.40) 42%, rgba(0,0,0,.05) 100%);"
+        ></div>
+
+        <div class="relative flex h-full flex-col justify-end p-7">
+          <div class="max-w-[28rem]">
+            <div class="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-xs font-medium text-white backdrop-blur">
+              {t(lang, "menu.category")}
+            </div>
+
+            <div class="mt-3 text-3xl font-semibold tracking-tight text-white">
+              {t(lang, c.titleKey)}
+            </div>
+
+            <p class="mt-2 text-sm text-white/80">
+              {t(lang, c.descKey)}
+            </p>
+
+            <div class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white">
+              <span class="h-2 w-2 rounded-full" style="background: rgba(86,199,193,.95);"></span>
+              {t(lang, "menu.openCategory")}
+              <span class="transition group-hover:translate-x-0.5">→</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

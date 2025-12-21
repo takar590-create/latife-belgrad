@@ -1,0 +1,94 @@
+---
+import { site } from "@/lib/site";
+
+type Item = {
+  key: "tiktok" | "instagram" | "maps";
+  href: string;
+  label: string;
+};
+
+const items: Item[] = [
+  { key: "tiktok", href: site.tiktok, label: "TikTok" },
+  { key: "instagram", href: site.instagram, label: "Instagram" },
+  { key: "maps", href: site.mapsUrl, label: "Google Maps" },
+];
+---
+
+<div class="social-dock" aria-label="Social links">
+  {
+    items.map((it) => (
+      <a
+        class={`social-dock__btn social-dock__btn--${it.key}`}
+        href={it.href}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={it.label}
+        title={it.label}
+      >
+        {/* TikTok */}
+        {it.key === "tiktok" ? (
+          <svg
+            class="social-dock__icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M14 4v11.2a4.2 4.2 0 1 1-3-4V7.2c.9.6 1.9.9 3 .9" />
+            <path d="M14 6c1.1 1.6 2.6 2.7 4.5 3" />
+          </svg>
+        ) : null}
+
+        {/* Instagram */}
+        {it.key === "instagram" ? (
+          <svg
+            class="social-dock__icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="6" y="6" width="12" height="12" rx="3" />
+            <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0-4 0" />
+            <path d="M16.5 7.5h.01" />
+          </svg>
+        ) : null}
+
+        {/* Google Maps */}
+        {it.key === "maps" ? (
+          <svg
+            class="social-dock__icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11z" />
+            <path d="M12 10a2 2 0 1 0 0 4a2 2 0 0 0 0-4z" />
+          </svg>
+        ) : null}
+
+        <span class="sr-only">{it.label}</span>
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .sr-only{
+    position:absolute;
+    width:1px;height:1px;
+    padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);
+    white-space:nowrap;border:0;
+  }
+</style>

@@ -1,0 +1,115 @@
+---
+import type { Lang } from "@/i18n";
+import { LANGS, t } from "@/i18n";
+import { withLang } from "@/lib/paths";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import MenuView from "@/components/MenuView.astro";
+import type { MenuCategoryKey } from "@/data/menu";
+
+export async function getStaticPaths() {
+  const categories = [
+    { slug: "kahvalti" as const, key: "breakfast" as const },
+    { slug: "sicak-icecekler" as const, key: "hot" as const },
+    { slug: "soguk-icecekler" as const, key: "cold" as const },
+    { slug: "tatlilar" as const, key: "desserts" as const },
+  ];
+
+  return LANGS.flatMap((lang) =>
+    categories.map((c) => ({
+      params: { lang, slug: c.slug },
+      props: { categoryKey: c.key },
+    }))
+  );
+}
+
+const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const { categoryKey } = Astro.props as { categoryKey: MenuCategoryKey };
+
+const titleKeyBySlug: Record<string, string> = {
+  "kahvalti": "menu.cat.breakfast",
+  "sicak-icecekler": "menu.cat.hot",
+  "soguk-icecekler": "menu.cat.cold",
+  "tatlilar": "menu.cat.desserts",
+};
+
+const titleKey = titleKeyBySlug[slug] ?? "menu.title";
+---
+
+<BaseLayout
+  lang={lang}
+  path={`/menu/${slug}`}
+  title={`${t(lang, titleKey)} | Latife`}
+  description="Latife menu"
+>
+  <!-- ✅ KATEGORİ SAYFASI: sabit arama bar (header altında) -->
+  <div slot="floating">
+    <div id="menuFixedBar" class="menu-fixedbar">
+      <div class="container-pad py-3">
+        <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div class="flex items-center gap-3">
+            <a
+              class="pill menu-pill"
+              href={withLang(lang, "/menu")}
+              aria-label={t(lang, "menu.back")}
+            >
+              ← {t(lang, "menu.back")}
+            </a>
+
+            <div class="hidden sm:block text-sm text-muted">
+              {t(lang, titleKey)}
+            </div>
+          </div>
+
+          <div class="w-full md:w-80">
+            <input
+              id="menuSearch"
+              type="search"
+              placeholder={t(lang, "menu.searchInCategory")}
+              class="w-full rounded-2xl border border-black/10 bg-bg px-4 py-2 text-sm outline-none focus:border-brand"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ fixed bar içerik üstüne binmesin -->
+  <div class="h-[96px] md:h-[84px]"></div>
+
+  <div class="mb-8">
+    <h1 class="font-display text-4xl">{t(lang, titleKey)}</h1>
+    <p class="mt-2 text-muted">{t(lang, "menu.note")}</p>
+  </div>
+
+  <!-- ✅ SADECE SEÇİLEN KATEGORİ -->
+  <MenuView lang={lang} category={categoryKey} />
+
+  <script is:inline>
+    (() => {
+      const norm = (s) => (s || "").toLowerCase().trim();
+
+      const input = document.getElementById("menuSearch");
+      const rows = Array.from(document.querySelectorAll(".menu-row"));
+      const empty = document.getElementById("menuEmpty");
+
+      function applySearch() {
+        const q = norm(input?.value || "");
+        let shown = 0;
+
+        rows.forEach((row) => {
+          const name = norm(row.getAttribute("data-name") || "");
+          const desc = norm(row.getAttribute("data-desc") || "");
+          const ok = name.includes(q) || desc.includes(q);
+
+          row.style.display = ok ? "" : "none";
+          if (ok) shown++;
+        });
+
+        if (empty) empty.style.display = shown === 0 ? "" : "none";
+      }
+
+      input?.addEventListener("input", applySearch);
+      applySearch();
+    })();
+  </script>
+</BaseLayout>

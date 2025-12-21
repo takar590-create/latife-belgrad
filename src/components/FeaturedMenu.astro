@@ -1,0 +1,174 @@
+---
+import type { Lang } from "../i18n/i18n";
+import { t } from "../i18n/i18n";
+import { withLang } from "../lib/paths";
+import { menu, type MenuCategoryKey, type Price } from "../data/menu";
+
+const { lang } = Astro.props as { lang: Lang };
+
+function priceToText(p: Price): string {
+  if (typeof p === "number") return `${p} RSD`;
+
+  if ("single" in p) {
+    const s = p.single;
+    const d = p.double;
+    return d ? `S: ${s} / D: ${d} RSD` : `S: ${s} RSD`;
+  }
+
+  if ("size" in p) {
+    return `${p.size}: ${p.price} RSD`;
+  }
+
+  return "";
+}
+
+function catTitleKey(catKey: MenuCategoryKey): string {
+  return `menu.cat.${catKey}`;
+}
+
+function catDescKey(catKey: MenuCategoryKey): string {
+  return `menu.cat.${catKey}Desc`;
+}
+
+function firstNonAlcoholItem(catKey: MenuCategoryKey) {
+  const cat = menu.find((c) => c.key === catKey);
+  if (!cat) return null;
+
+  // cold içinde alkol varsa, vitrine alkol olmayanı seç
+  const items = cat.items || [];
+  const nonAlcohol = items.find((x) => !(Array.isArray(x.tags) && x.tags.includes("alcohol")));
+  return nonAlcohol ?? items[0] ?? null;
+}
+
+const picks = ([
+  "breakfast",
+  "hot",
+  "cold",
+  "desserts",
+] as MenuCategoryKey[]).map((key) => ({
+  key,
+  item: firstNonAlcoholItem(key),
+}));
+---
+
+<section class="mt-12">
+  <!-- Premium shell -->
+  <div class="relative overflow-hidden rounded-3xl bg-white shadow-ring">
+    <!-- soft ambient background -->
+    <div
+      class="absolute inset-0 opacity-60"
+      style="background:
+        radial-gradient(circle at 12% 18%, rgba(86,199,193,.22), transparent 55%),
+        radial-gradient(circle at 88% 26%, rgba(214,198,164,.20), transparent 58%),
+        radial-gradient(circle at 62% 92%, rgba(76,59,42,.14), transparent 60%);"
+    ></div>
+
+    <div class="relative p-7 md:p-10">
+      <div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <div>
+          <div class="pill">{t(lang, "home.menuTeaser")}</div>
+          <h2 class="mt-4 font-display text-3xl leading-tight md:text-4xl">
+            {t(lang, "home.menuTeaser")}
+          </h2>
+          <p class="mt-2 max-w-prose text-sm text-muted">
+            {t(lang, "menu.categoriesKicker")}
+          </p>
+        </div>
+
+        <a
+          class="btn btn-ghost"
+          href={withLang(lang, "/menu")}
+        >
+          {t(lang, "cta.menu")}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <!-- Picks grid -->
+      <div class="mt-7 grid gap-4 md:grid-cols-2">
+        {picks.map((p) => (
+          <a
+            href={withLang(lang, `/menu/${p.key === "breakfast"
+              ? "kahvalti"
+              : p.key === "hot"
+              ? "sicak-icecekler"
+              : p.key === "cold"
+              ? "soguk-icecekler"
+              : "tatlilar"}`)}
+            class="group relative overflow-hidden rounded-3xl bg-white/65 p-5 shadow-ring transition hover:shadow-soft"
+            style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
+            aria-label={t(lang, catTitleKey(p.key))}
+          >
+            <!-- top row: category + price -->
+            <div class="flex items-start justify-between gap-3">
+              <div class="min-w-0">
+                <div class="text-xs font-medium text-muted">
+                  {t(lang, catTitleKey(p.key))}
+                </div>
+                <div class="mt-1 font-medium leading-snug">
+                  {p.item?.name ?? t(lang, catDescKey(p.key))}
+                </div>
+              </div>
+
+              <div class="shrink-0">
+                <span
+                  class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold tabular-nums"
+                  style="background: rgba(86,199,193,.15);"
+                >
+                  {p.item?.price ? priceToText(p.item.price) : ""}
+                </span>
+              </div>
+            </div>
+
+            <p
+              class="mt-2 text-sm text-muted"
+              style="
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+              "
+            >
+              {p.item?.description ?? t(lang, catDescKey(p.key))}
+            </p>
+
+            <!-- media strip -->
+            <div class="mt-4 overflow-hidden rounded-2xl">
+              <div
+                class="h-24 w-full"
+                style="background:
+                  linear-gradient(90deg, rgba(86,199,193,.18), rgba(214,198,164,.14), rgba(76,59,42,.10));"
+              ></div>
+
+              {p.item?.image ? (
+                <img
+                  src={p.item.image}
+                  alt={p.item?.name ?? t(lang, catTitleKey(p.key))}
+                  class="h-24 w-full object-cover"
+                  loading="lazy"
+                  onerror="this.remove()"
+                />
+              ) : null}
+            </div>
+
+            <!-- micro CTA -->
+            <div class="mt-4 inline-flex items-center gap-2 text-sm font-medium">
+              <span class="h-2 w-2 rounded-full bg-brand"></span>
+              {t(lang, "menu.openCategory")}
+              <span class="transition group-hover:translate-x-0.5" aria-hidden="true">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- subtle footer line -->
+      <div class="mt-7 hr"></div>
+
+      <!-- tiny note -->
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-muted">
+        <span>{t(lang, "menu.note")}</span>
+        <span class="pill">Latife • {t(lang, "home.kicker")}</span>
+      </div>
+    </div>
+  </div>
+</section>

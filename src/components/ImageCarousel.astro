@@ -1,0 +1,164 @@
+---
+type Slide = { src: string; alt: string };
+
+const {
+  slides,
+  className = "",
+  ariaLabel = "Gallery slider",
+} = Astro.props as {
+  slides: Slide[];
+  className?: string;
+  ariaLabel?: string;
+};
+
+// Unique id
+const uid = `crsl_${Math.random().toString(36).slice(2)}`;
+
+// Inline SVG fallback (no extra file needed)
+const FALLBACK_SRC =
+  "data:image/svg+xml," +
+  encodeURIComponent(`
+  <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#56C7C1" stop-opacity="0.18"/>
+        <stop offset="0.5" stop-color="#D6C6A4" stop-opacity="0.14"/>
+        <stop offset="1" stop-color="#4C3B2A" stop-opacity="0.10"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="800" fill="url(#g)"/>
+    <circle cx="220" cy="190" r="90" fill="#56C7C1" fill-opacity="0.18"/>
+    <circle cx="980" cy="220" r="120" fill="#D6C6A4" fill-opacity="0.16"/>
+    <circle cx="780" cy="620" r="160" fill="#4C3B2A" fill-opacity="0.10"/>
+    <text x="60" y="740" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="26" fill="#1B1414" fill-opacity="0.55">
+      Latife Belgrade
+    </text>
+  </svg>
+`);
+---
+
+<section class={`relative ${className}`} aria-label={ariaLabel}>
+  <!-- Viewport -->
+  <div
+    id={`${uid}-viewport`}
+    class="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth rounded-3xl bg-white/40 p-4 shadow-ring"
+    tabindex="0"
+    aria-label="Carousel"
+  >
+    {slides.map((s, idx) => (
+      <figure
+        class="slide shrink-0 snap-start overflow-hidden rounded-2xl bg-sand/20 shadow-ring"
+        style="width: min(520px, 85vw);"
+        data-idx={idx}
+      >
+        <img
+          src={s.src}
+          alt={s.alt}
+          class="h-[420px] w-full object-cover"
+          loading={idx === 0 ? "eager" : "lazy"}
+          onerror={`this.onerror=null; this.src='${FALLBACK_SRC}';`}
+        />
+      </figure>
+    ))}
+  </div>
+
+  <!-- Arrows -->
+  <button
+    type="button"
+    class="absolute left-2 top-1/2 hidden -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-sm shadow-ring backdrop-blur hover:bg-white md:inline-flex"
+    aria-label="Previous"
+    data-prev={uid}
+  >
+    ‹
+  </button>
+
+  <button
+    type="button"
+    class="absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-sm shadow-ring backdrop-blur hover:bg-white md:inline-flex"
+    aria-label="Next"
+    data-next={uid}
+  >
+    ›
+  </button>
+
+  <!-- Dots -->
+  <div class="mt-4 flex items-center justify-center gap-2">
+    {slides.map((_, idx) => (
+      <button
+        type="button"
+        class="dot h-2.5 w-2.5 rounded-full bg-black/20 transition"
+        aria-label={`Go to slide ${idx + 1}`}
+        data-dot={uid}
+        data-idx={idx}
+      />
+    ))}
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const uid = {JSON.stringify(uid)};
+    const viewport = document.getElementById(uid + "-viewport");
+    if (!viewport) return;
+
+    const slides = Array.from(viewport.querySelectorAll(".slide"));
+    const prevBtn = document.querySelector(`[data-prev="${uid}"]`);
+    const nextBtn = document.querySelector(`[data-next="${uid}"]`);
+    const dots = Array.from(document.querySelectorAll(`[data-dot="${uid}"]`));
+
+    function nearestIndex() {
+      const left = viewport.scrollLeft;
+      let best = 0;
+      let bestDist = Infinity;
+      slides.forEach((el, i) => {
+        const dist = Math.abs(el.offsetLeft - left);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+      return best;
+    }
+
+    function setActive(i) {
+      dots.forEach((d, idx) => {
+        d.classList.toggle("bg-black/20", idx !== i);
+        d.classList.toggle("bg-brand", idx === i); // brand class varsa kullanır
+        if (idx === i) d.style.background = "rgba(86,199,193,.9)";
+        else d.style.background = "";
+      });
+    }
+
+    function goTo(i) {
+      const el = slides[i];
+      if (!el) return;
+      viewport.scrollTo({ left: el.offsetLeft, behavior: "smooth" });
+      setActive(i);
+    }
+
+    prevBtn?.addEventListener("click", () => goTo(Math.max(0, nearestIndex() - 1)));
+    nextBtn?.addEventListener("click", () => goTo(Math.min(slides.length - 1, nearestIndex() + 1)));
+
+    dots.forEach((d) => {
+      d.addEventListener("click", () => {
+        const i = Number(d.getAttribute("data-idx") || "0");
+        goTo(i);
+      });
+    });
+
+    // Keyboard: left/right
+    viewport.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") goTo(Math.max(0, nearestIndex() - 1));
+      if (e.key === "ArrowRight") goTo(Math.min(slides.length - 1, nearestIndex() + 1));
+    });
+
+    let t = null;
+    viewport.addEventListener("scroll", () => {
+      clearTimeout(t);
+      t = setTimeout(() => setActive(nearestIndex()), 80);
+    });
+
+    // init
+    setActive(0);
+  })();
+</script>

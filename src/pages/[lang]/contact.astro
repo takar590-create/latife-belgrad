@@ -1,0 +1,88 @@
+---
+import type { Lang } from "@/i18n";
+import { LANGS, t } from "@/i18n";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site, phoneHref } from "@/lib/site";
+
+export async function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+
+const rows: Array<{ k: string; v: string }> = [
+  { k: "day.mon", v: site.hours.mon },
+  { k: "day.tue", v: site.hours.tue },
+  { k: "day.wed", v: site.hours.wed },
+  { k: "day.thu", v: site.hours.thu },
+  { k: "day.fri", v: site.hours.fri },
+  { k: "day.sat", v: site.hours.sat },
+  { k: "day.sun", v: site.hours.sun },
+];
+---
+
+<BaseLayout
+  lang={lang}
+  path="/contact"
+  title={`${t(lang, "contact.title")} | Latife`}
+  description="Contact Latife Belgrade"
+>
+  <h1 class="font-display text-4xl">{t(lang, "contact.title")}</h1>
+  <p class="mt-2 text-muted">{t(lang, "contact.subtitle")}</p>
+
+  <div class="mt-8 grid gap-6 md:grid-cols-2">
+    <div class="rounded-3xl bg-white p-7 shadow-ring">
+      <h2 class="font-display text-xl">{t(lang, "contact.address")}</h2>
+      <p class="mt-2 text-muted">{site.address}</p>
+
+      <div class="mt-6">
+        <h2 class="font-display text-xl">{t(lang, "contact.phone")}</h2>
+        <a
+          class="mt-2 inline-flex items-center gap-2 text-sm font-medium underline underline-offset-4"
+          style="text-decoration-color: rgba(86,199,193,.6);"
+          href={phoneHref(site.phoneLocal)}
+        >
+          {site.phoneLocal}
+        </a>
+      </div>
+
+      <div class="mt-6">
+        <h2 class="font-display text-xl">{t(lang, "contact.social")}</h2>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <a class="pill hover:bg-white" href={site.instagram} target="_blank" rel="noreferrer">
+            Instagram
+          </a>
+          <a class="pill hover:bg-white" href={site.tiktok} target="_blank" rel="noreferrer">
+            TikTok
+          </a>
+          <a class="pill hover:bg-white" href={site.mapsUrl} target="_blank" rel="noreferrer">
+            Google Maps
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <h2 class="font-display text-xl">{t(lang, "home.hours")}</h2>
+
+        <div class="mt-2 grid grid-cols-2 gap-2 text-sm text-muted">
+          {rows.map((r) => (
+            <>
+              <div class="rounded-xl bg-bg px-3 py-2">{t(lang, r.k)}</div>
+              <div class="rounded-xl bg-bg px-3 py-2">{r.v}</div>
+            </>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-3xl bg-white p-3 shadow-ring">
+      <iframe
+        title="Latife on Google Maps"
+        src={site.mapsEmbedUrl}
+        class="h-[520px] w-full rounded-2xl"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</BaseLayout>

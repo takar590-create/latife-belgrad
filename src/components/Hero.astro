@@ -1,0 +1,63 @@
+---
+import type { Lang } from "@/i18n";
+import { t } from "@/i18n";
+import { withLang } from "@/lib/paths";
+import { site, phoneHref } from "@/lib/site";
+import ImageCarousel from "@/components/ImageCarousel.astro";
+
+const { lang } = Astro.props as { lang: Lang };
+
+const slides = [
+  { src: "/images/venue-1.jpg", alt: "Latife interior" },
+  { src: "/images/coffee-1.jpg", alt: "Coffee at Latife" },
+  { src: "/images/venue-2.jpg", alt: "Latife bar" },
+  { src: "/images/front-1.jpg", alt: "Latife storefront" },
+  { src: "/images/venue-3.jpg", alt: "Latife detail" },
+  { src: "/images/coffee-2.jpg", alt: "Coffee set" },
+  { src: "/images/front-2.jpg", alt: "Latife entrance" },
+];
+---
+
+<section class="relative overflow-hidden rounded-3xl bg-white shadow-ring">
+  <div
+    class="absolute inset-0 opacity-10"
+    style="background: radial-gradient(circle at 15% 20%, rgba(86,199,193,.8), transparent 60%),
+                    radial-gradient(circle at 85% 30%, rgba(214,198,164,.8), transparent 55%),
+                    radial-gradient(circle at 55% 85%, rgba(76,59,42,.7), transparent 60%);"
+  ></div>
+
+  <div class="relative grid gap-8 p-8 md:grid-cols-2 md:items-center md:p-12">
+    <div>
+      <div class="pill">{t(lang, "home.kicker")}</div>
+
+      <h1 class="mt-4 font-display text-4xl leading-tight md:text-5xl">
+        {t(lang, "home.title")}
+      </h1>
+
+      <p class="mt-4 max-w-prose text-muted">
+        {t(lang, "home.subtitle")}
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href={site.mapsUrl} target="_blank" rel="noreferrer">
+          {t(lang, "cta.route")}
+        </a>
+        <a class="btn btn-ghost" href={phoneHref(site.phoneLocal)}>
+          {t(lang, "cta.call")}
+        </a>
+        <a class="btn btn-ghost" href={withLang(lang, "/menu")}>
+          {t(lang, "cta.menu")}
+        </a>
+      </div>
+
+      <div class="mt-6 text-xs text-muted">{site.address}</div>
+    </div>
+
+    <div>
+      <ImageCarousel slides={slides} ariaLabel="Latife gallery" />
+      <p class="mt-3 text-center text-xs text-muted">
+        (Mobilde parmağınla kaydırabilir, masaüstünde oklarla geçebilirsin.)
+      </p>
+    </div>
+  </div>
+</section>

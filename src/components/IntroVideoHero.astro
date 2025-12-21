@@ -1,0 +1,81 @@
+---
+import type { Lang } from "@/i18n";
+import { t } from "@/i18n";
+import { withLang } from "@/lib/paths";
+import { site, phoneHref } from "@/lib/site";
+
+const { lang } = Astro.props as { lang: Lang };
+
+// Video yolları (public/ altında olmalı)
+const WEBM = "/videos/latife-intro.webm";
+const MP4 = "/videos/latife-intro.mp4";
+const POSTER = "/images/intro-poster.jpg"; // istersen sonra eklersin
+---
+
+<section class="intro-video" aria-label="Latife intro video">
+  <div class="intro-video__media" aria-hidden="true">
+    <video
+      class="intro-video__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster={POSTER}
+    >
+      <source src={WEBM} type="video/webm" />
+      <source src={MP4} type="video/mp4" />
+    </video>
+    <div class="intro-video__overlay"></div>
+    <div class="intro-video__grain"></div>
+  </div>
+
+  <div class="container-pad intro-video__content">
+    <div class="intro-video__card">
+      <div class="pill">{t(lang, "home.kicker")}</div>
+
+      <h1 class="mt-4 font-display text-4xl leading-tight md:text-6xl">
+        {t(lang, "home.title")}
+      </h1>
+
+      <p class="mt-4 max-w-prose text-white/80">
+        {t(lang, "home.subtitle")}
+      </p>
+
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href={site.mapsUrl} target="_blank" rel="noreferrer">
+          {t(lang, "cta.route")}
+        </a>
+
+        <a class="btn btn-ghost" href={phoneHref(site.phoneLocal)}>
+          {t(lang, "cta.call")}
+        </a>
+
+        <a class="btn btn-ghost" href={withLang(lang, "/menu")}>
+          {t(lang, "cta.menu")}
+        </a>
+      </div>
+
+      <div class="mt-6 text-xs text-white/70">
+        {site.address}
+      </div>
+    </div>
+
+    <a class="intro-video__down" href="#homeContent" aria-label="Scroll">
+      <span class="intro-video__downIcon" aria-hidden="true">⌄</span>
+    </a>
+  </div>
+
+  <script is:inline>
+    (() => {
+      // Reduced motion => autoplay istemeyen kullanıcılar
+      const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce) return;
+
+      const v = document.querySelector(".intro-video__video");
+      if (v && v.pause) {
+        try { v.pause(); } catch {}
+      }
+    })();
+  </script>
+</section>

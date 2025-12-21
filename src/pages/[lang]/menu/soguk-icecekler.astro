@@ -1,0 +1,64 @@
+---
+import type { Lang } from "@/i18n";
+import { LANGS, t } from "@/i18n";
+import { withLang } from "@/lib/paths";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import MenuView from "@/components/MenuView.astro";
+
+export async function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+---
+
+<BaseLayout lang={lang} path="/menu/soguk-icecekler" title={`${t(lang,"menu.cat.cold")} | Latife`} description="Cold drinks menu">
+  <div slot="floating">
+    <div class="sticky top-[var(--site-header-h)] z-30 border-b border-black/10 bg-bg/80 backdrop-blur">
+      <div class="container-pad flex flex-col gap-3 py-3 md:flex-row md:items-center md:justify-between">
+        <div class="flex items-center gap-3">
+          <a class="pill hover:bg-white" href={withLang(lang,"/menu")}>← {t(lang,"menu.back")}</a>
+          <div class="font-display text-lg">{t(lang,"menu.cat.cold")}</div>
+        </div>
+
+        <div class="w-full md:w-80">
+          <input
+            id="menuSearch"
+            type="search"
+            placeholder={t(lang,"menu.searchInCategory")}
+            class="w-full rounded-2xl border border-black/10 bg-white/70 px-4 py-2 text-sm outline-none focus:border-brand"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-[92px] md:h-[72px]"></div>
+
+  <MenuView lang={lang} category="cold" />
+
+  <script is:inline>
+    (() => {
+      const norm = (s) => (s || "").toLowerCase().trim();
+      const input = document.getElementById("menuSearch");
+      const items = Array.from(document.querySelectorAll(".menu-item"));
+      const empty = document.getElementById("menuEmpty");
+
+      function applySearch() {
+        const q = norm(input?.value || "");
+        let shown = 0;
+        items.forEach((row) => {
+          const name = norm(row.getAttribute("data-name") || "");
+          const desc = norm(row.getAttribute("data-desc") || "");
+          const ok = name.includes(q) || desc.includes(q);
+          row.style.display = ok ? "" : "none";
+          if (ok) shown++;
+        });
+        if (empty) empty.style.display = shown === 0 ? "" : "none";
+      }
+
+      input?.addEventListener("input", applySearch);
+      applySearch();
+    })();
+  </script>
+</BaseLayout>

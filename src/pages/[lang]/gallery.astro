@@ -1,0 +1,31 @@
+---
+import type { Lang } from "../../i18n";
+import { LANGS, t } from "../../i18n";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths(){
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params as { lang: Lang };
+
+const images = [
+  { src: "/images/venue-1.jpg", alt: "Interior" },
+  { src: "/images/venue-2.jpg", alt: "Bar" },
+  { src: "/images/venue-3.jpg", alt: "Detail" },
+  { src: "/images/front-1.jpg", alt: "Front" },
+  { src: "/images/front-2.jpg", alt: "Entrance" },
+  { src: "/images/coffee-1.jpg", alt: "Coffee" },
+  { src: "/images/coffee-2.jpg", alt: "Coffee set" },
+];
+---
+
+<BaseLayout lang={lang} path="/gallery" title={`${t(lang,"nav.gallery")} | Latife`} description="Gallery">
+  <h1 class="font-display text-4xl">{t(lang,"nav.gallery")}</h1>
+  <div class="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+    {images.map((img) => (
+      <a href={img.src} class="group overflow-visible rounded-2xl bg-white shadow-ring">
+        <img src={img.src} alt={img.alt} class="h-64 w-full object-cover transition group-hover:scale-[1.02]" loading="lazy" />
+      </a>
+    ))}
+  </div>
+</BaseLayout>

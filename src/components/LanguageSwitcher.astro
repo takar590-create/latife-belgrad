@@ -1,0 +1,19 @@
+---
+import { LANGS, type Lang } from "@/i18n";
+import { withLang } from "@/lib/paths";
+
+const { lang, path } = Astro.props as { lang: Lang; path: string };
+---
+
+<div class="flex items-center gap-2">
+  {LANGS.map((l) => (
+    <a
+      class={"pill transition " + (l === lang ? "" : "hover:bg-white")}
+      style={l === lang ? "background: rgba(86,199,193,.80);" : undefined}
+      href={withLang(l, path)}
+      aria-current={l === lang ? "page" : undefined}
+    >
+      {l.toUpperCase()}
+    </a>
+  ))}
+</div>

@@ -1,0 +1,60 @@
+---
+import type { Lang } from "@/i18n";
+import { t } from "@/i18n";
+import { site } from "@/lib/site";
+
+const { lang } = Astro.props as { lang: Lang };
+
+const rows: Array<[string, string]> = [
+  ["Mon", site.hours.mon],
+  ["Tue", site.hours.tue],
+  ["Wed", site.hours.wed],
+  ["Thu", site.hours.thu],
+  ["Fri", site.hours.fri],
+  ["Sat", site.hours.sat],
+  ["Sun", site.hours.sun],
+];
+---
+
+<section class="mt-12 grid gap-6 md:grid-cols-2">
+  <div class="rounded-3xl bg-white p-6 shadow-ring">
+    <div class="flex items-center justify-between">
+      <h3 class="font-display text-xl">{t(lang, "home.hours")}</h3>
+      <span class="pill">08:30–22:30</span>
+    </div>
+
+    <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
+      {rows.map(([d, v]) => (
+        <div class="flex items-center justify-between rounded-xl bg-bg px-3 py-2">
+          <span class="text-muted">{d}</span>
+          <span class="font-medium">{v}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <a
+    class="rounded-3xl bg-white p-6 shadow-ring transition hover:opacity-95"
+    href={site.mapsUrl}
+    target="_blank"
+    rel="noreferrer"
+  >
+    <h3 class="font-display text-xl">{t(lang, "home.where")}</h3>
+    <p class="mt-2 text-sm text-muted">{site.address}</p>
+
+    <div class="mt-4 aspect-[16/10] overflow-hidden rounded-2xl bg-bg">
+      <iframe
+        title="Latife map"
+        src={site.mapsEmbedUrl}
+        class="h-full w-full"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+
+    <div class="mt-4 inline-flex items-center gap-2 text-sm font-medium">
+      <span class="h-2 w-2 rounded-full" style="background: rgb(86,199,193);"></span>
+      {t(lang, "cta.route")}
+    </div>
+  </a>
+</section>

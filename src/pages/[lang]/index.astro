@@ -1,0 +1,33 @@
+---
+import type { Lang } from "@/i18n";
+import { LANGS, t } from "@/i18n";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import IntroVideoHero from "@/components/IntroVideoHero.astro";
+import FeaturedMenu from "@/components/FeaturedMenu.astro";
+import HoursCard from "@/components/HoursCard.astro";
+
+export async function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+---
+
+<BaseLayout
+  lang={lang}
+  path="/"
+  title={`${t(lang, "home.title")} | Latife Belgrade`}
+  description="Latife Belgrade — coffee, desserts, and a cozy stop in the heart of the city."
+>
+  <!-- Video giriş: sayfa açılır açılmaz ilk görünen -->
+  <div slot="floating">
+    <IntroVideoHero lang={lang} />
+  </div>
+
+  <!-- Video altına “scroll” ile ineceğimiz anchor -->
+  <div id="homeContent"></div>
+
+  <FeaturedMenu lang={lang} />
+  <HoursCard lang={lang} />
+</BaseLayout>

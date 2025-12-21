@@ -1,0 +1,68 @@
+---
+import type { Lang } from "@/i18n";
+import { t } from "@/i18n";
+import { withLang } from "@/lib/paths";
+import { site, phoneHref } from "@/lib/site";
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<footer class="mt-16 border-t border-black/10">
+  <div class="container-pad py-10">
+    <div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+      <div>
+        <div class="font-display text-2xl">{site.shortName}</div>
+        <div class="mt-2 text-sm text-muted">{site.address}</div>
+        <a
+          class="mt-3 inline-block text-sm underline underline-offset-4"
+          style="text-decoration-color: rgba(86,199,193,.6);"
+          href={phoneHref(site.phoneLocal)}
+        >
+          {site.phoneLocal}
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 gap-6 text-sm">
+        <div>
+          <div class="font-medium" style="color: rgba(27,20,20,.8);">
+            {t(lang, "nav.menu")}
+          </div>
+
+          <div class="mt-2 space-y-2 text-muted">
+            <a class="block hover:opacity-80" href={withLang(lang, "/menu#combo")}>
+              {t(lang, "menu.combo")}
+            </a>
+            <a class="block hover:opacity-80" href={withLang(lang, "/menu#coffee")}>
+              {t(lang, "menu.coffee")}
+            </a>
+            <a class="block hover:opacity-80" href={withLang(lang, "/menu#tea")}>
+              {t(lang, "menu.tea")}
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="font-medium" style="color: rgba(27,20,20,.8);">
+            {t(lang, "contact.social") !== "contact.social" ? t(lang, "contact.social") : "Social"}
+          </div>
+
+          <div class="mt-2 space-y-2 text-muted">
+            <a class="block hover:opacity-80" href={site.instagram} target="_blank" rel="noreferrer">
+              Instagram
+            </a>
+            <a class="block hover:opacity-80" href={site.tiktok} target="_blank" rel="noreferrer">
+              TikTok
+            </a>
+            <a class="block hover:opacity-80" href={site.mapsUrl} target="_blank" rel="noreferrer">
+              Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 text-xs text-muted">
+      © {new Date().getFullYear()} {site.name}
+    </div>
+  </div>
+</footer>

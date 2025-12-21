@@ -1,0 +1,39 @@
+---
+import type { Lang } from "@/i18n";
+import { LANGS, t } from "@/i18n";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+---
+
+<BaseLayout
+  lang={lang}
+  path="/about"
+  title={`${t(lang, "about.title")} | Latife`}
+  description="About Latife Belgrade"
+>
+  <h1 class="font-display text-4xl">{t(lang, "about.title")}</h1>
+
+  <div class="mt-6 grid gap-6 md:grid-cols-2">
+    <div class="rounded-3xl bg-white p-7 shadow-ring">
+      <p class="text-muted">{t(lang, "about.p1")}</p>
+      <p class="mt-4 text-muted">{t(lang, "about.p2")}</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-white shadow-ring">
+        <img src="/images/venue-3.jpg" alt="Latife interior detail" class="h-full w-full object-cover" loading="lazy" />
+      </div>
+      <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-white shadow-ring">
+        <img src="/images/front-2.jpg" alt="Latife entrance" class="h-full w-full object-cover" loading="lazy" />
+      </div>
+      <div class="col-span-2 aspect-[16/9] overflow-hidden rounded-2xl bg-white shadow-ring">
+        <img src="/images/coffee-2.jpg" alt="Coffee" class="h-full w-full object-cover" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
