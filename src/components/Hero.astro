@@ -7,25 +7,27 @@ import { site, phoneHref } from "@/lib/site";
 
 <section class="relative overflow-hidden rounded-3xl bg-white shadow-ring">
   <div class="relative h-[72vh] min-h-[560px] w-full">
-    <!-- TEK VIDEO: iOS Safari için en sağlam yaklaşım -->
+    <!-- SINGLE VIDEO (iOS autoplay için en stabil yaklaşım) -->
     <video
       id="heroVideo"
-      class="absolute inset-0 h-full w-full object-cover object-center"
-      src="/videos/hero-ios.mp4"
-      autoplay
-      muted
-      loop
+      class="absolute inset-0 h-full w-full object-cover object-center
+             brightness-[0.78] saturate-[1.15]"
       playsinline
+      muted
+      autoplay
+      loop
       preload="auto"
       poster="/images/venue-1.jpg"
-      aria-hidden="true"
-      disablepictureinpicture
-      webkit-playsinline
-    ></video>
+    >
+      <!-- iOS-friendly first -->
+      <source src="/videos/hero-ios.mp4" type="video/mp4" />
+      <!-- fallback (istersen bırak) -->
+      <source src="/videos/hero.mp4" type="video/mp4" />
+    </video>
 
-    <!-- Premium overlay: readability + vignette -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/70"></div>
-    <div class="absolute inset-0 [box-shadow:inset_0_0_220px_rgba(0,0,0,.55)]"></div>
+    <!-- Premium readability overlay (BLUR YOK) -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/65"></div>
+    <div class="absolute inset-0 [box-shadow:inset_0_0_180px_rgba(0,0,0,.45)]"></div>
 
     <!-- Content -->
     <div class="relative z-10 grid h-full items-end p-6 md:p-10">
@@ -49,12 +51,14 @@ import { site, phoneHref } from "@/lib/site";
           <a class="btn btn-primary" href={site.mapsUrl} target="_blank" rel="noreferrer">
             {t(lang, "cta.route")}
           </a>
+
           <a
             class="btn btn-ghost ring-1 ring-white/25 bg-white/10 text-white hover:bg-white/20"
             href={phoneHref(site.phoneLocal)}
           >
             {t(lang, "cta.call")}
           </a>
+
           <a
             class="btn btn-ghost ring-1 ring-white/25 bg-white/10 text-white hover:bg-white/20"
             href={withLang(lang, "/menu")}
@@ -68,47 +72,37 @@ import { site, phoneHref } from "@/lib/site";
     </div>
   </div>
 
-  <!-- iOS/Safari autoplay “garantisi” -->
+  <!-- iOS Safari autoplay "kick" -->
   <script is:inline>
     (() => {
       const v = document.getElementById("heroVideo");
       if (!v) return;
 
-      const prep = () => {
-        try {
-          v.muted = true;
-          v.defaultMuted = true;
-          v.setAttribute("muted", "");
-          v.setAttribute("playsinline", "");
-          v.setAttribute("webkit-playsinline", "");
-          v.playsInline = true;
-          v.setAttribute("preload", "auto");
-          v.setAttribute("disablepictureinpicture", "");
-        } catch {}
-      };
+      // iOS için kritik
+      v.muted = true;
+      v.defaultMuted = true;
+      v.playsInline = true;
+      v.setAttribute("muted", "");
+      v.setAttribute("playsinline", "");
+      v.setAttribute("autoplay", "");
 
-      const tryPlay = () => {
-        prep();
-        const p = v.play?.();
-        if (p && typeof p.catch === "function") p.catch(() => {});
-      };
+      const tryPlay = () => v.play?.().catch(() => {});
+      // ilk yüklemede dene
+      tryPlay();
 
-      v.addEventListener("canplay", tryPlay, { once: true });
+      // sayfa görünür olunca tekrar dene
       document.addEventListener("visibilitychange", () => {
         if (!document.hidden) tryPlay();
       });
-      window.addEventListener("pageshow", tryPlay);
 
-      // iOS bazen ilk dokunuş ister
-      const onFirst = () => {
+      // iOS bazen user gesture bekler; ilk dokunuşta da başlat
+      const kick = () => {
         tryPlay();
-        window.removeEventListener("touchstart", onFirst);
-        window.removeEventListener("click", onFirst);
+        window.removeEventListener("touchstart", kick);
+        window.removeEventListener("click", kick);
       };
-      window.addEventListener("touchstart", onFirst, { passive: true });
-      window.addEventListener("click", onFirst);
-
-      tryPlay();
+      window.addEventListener("touchstart", kick, { passive: true });
+      window.addEventListener("click", kick);
     })();
   </script>
 </section>
