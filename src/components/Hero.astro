@@ -7,11 +7,10 @@ import { site, phoneHref } from "@/lib/site";
 
 <section class="relative overflow-hidden rounded-3xl bg-white shadow-ring">
   <div class="relative h-[72vh] min-h-[560px] w-full">
-    <!-- Background: same video, cover + blur (fills the whole hero) -->
+    <!-- TEK VIDEO: iOS Safari için en sağlam yaklaşım -->
     <video
-      id="heroBgVideo"
-      class="absolute inset-0 h-full w-full object-cover object-center scale-[1.15]
-             blur-2xl brightness-[0.70] saturate-[1.15]"
+      id="heroVideo"
+      class="absolute inset-0 h-full w-full object-cover object-center"
       src="/videos/hero.mp4"
       autoplay
       muted
@@ -24,40 +23,11 @@ import { site, phoneHref } from "@/lib/site";
       webkit-playsinline
     ></video>
 
-    <!-- Soft overlay + vignette for premium readability -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/18 to-black/65"></div>
-    <div class="absolute inset-0 [box-shadow:inset_0_0_180px_rgba(0,0,0,.55)]"></div>
+    <!-- Premium overlay: readability + vignette -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/70"></div>
+    <div class="absolute inset-0 [box-shadow:inset_0_0_220px_rgba(0,0,0,.55)]"></div>
 
-    <!-- Foreground: the real video (no distortion) -->
-    <div class="absolute inset-0 flex items-center justify-center px-6 md:px-10">
-      <div
-        class="relative w-full max-w-5xl overflow-hidden rounded-3xl
-               bg-white/10 ring-1 ring-white/20 shadow-2xl backdrop-blur-xl"
-      >
-        <!-- video frame ratio: mobile looks like IG; desktop gets a wider stage -->
-        <div class="relative aspect-[9/16] sm:aspect-[16/9]">
-          <video
-            id="heroMainVideo"
-            class="absolute inset-0 h-full w-full object-contain"
-            src="/videos/hero.mp4"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-            poster="/images/venue-1.jpg"
-            aria-hidden="true"
-            disablepictureinpicture
-            webkit-playsinline
-          ></video>
-
-          <!-- subtle highlight -->
-          <div class="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Content (on top) -->
+    <!-- Content -->
     <div class="relative z-10 grid h-full items-end p-6 md:p-10">
       <div
         class="max-w-2xl rounded-3xl bg-white/10 ring-1 ring-white/20
@@ -98,16 +68,13 @@ import { site, phoneHref } from "@/lib/site";
     </div>
   </div>
 
-  <!-- Autoplay / muted guarantee (iOS/Safari friendly) -->
+  <!-- iOS/Safari autoplay “garantisi” -->
   <script is:inline>
     (() => {
-      const vids = [
-        document.getElementById("heroBgVideo"),
-        document.getElementById("heroMainVideo"),
-      ].filter(Boolean);
+      const v = document.getElementById("heroVideo");
+      if (!v) return;
 
-      const prep = (v) => {
-        // iOS/Safari: play() öncesi attribute zorla
+      const prep = () => {
         try {
           v.muted = true;
           v.defaultMuted = true;
@@ -120,36 +87,28 @@ import { site, phoneHref } from "@/lib/site";
         } catch {}
       };
 
-      const tryPlay = (v) => {
-        prep(v);
+      const tryPlay = () => {
+        prep();
         const p = v.play?.();
         if (p && typeof p.catch === "function") p.catch(() => {});
       };
 
-      // İlk yükleme denemesi
-      vids.forEach((v) => {
-        tryPlay(v);
-
-        // Video hazır olunca tekrar dene
-        v.addEventListener("canplay", () => tryPlay(v), { once: true });
-
-        // Safari BFCache (geri-ileri) durumunda tekrar dene
-        window.addEventListener("pageshow", () => tryPlay(v));
-      });
-
-      // Sekme geri gelince tekrar dene
+      v.addEventListener("canplay", tryPlay, { once: true });
       document.addEventListener("visibilitychange", () => {
-        if (!document.hidden) vids.forEach((v) => tryPlay(v));
+        if (!document.hidden) tryPlay();
       });
+      window.addEventListener("pageshow", tryPlay);
 
-      // iOS bazen kullanıcı etkileşimi ister
-      const onFirstInteraction = () => {
-        vids.forEach((v) => tryPlay(v));
-        window.removeEventListener("touchstart", onFirstInteraction);
-        window.removeEventListener("click", onFirstInteraction);
+      // iOS bazen ilk dokunuş ister
+      const onFirst = () => {
+        tryPlay();
+        window.removeEventListener("touchstart", onFirst);
+        window.removeEventListener("click", onFirst);
       };
-      window.addEventListener("touchstart", onFirstInteraction, { passive: true });
-      window.addEventListener("click", onFirstInteraction);
+      window.addEventListener("touchstart", onFirst, { passive: true });
+      window.addEventListener("click", onFirst);
+
+      tryPlay();
     })();
   </script>
 </section>
