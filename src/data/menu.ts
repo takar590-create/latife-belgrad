@@ -80,7 +80,7 @@ export const menu: MenuCategory[] = [
           "Bogat doručak tanjir za odličan početak dana."
         ),
         image: img("breakfast-plate"),
-        price: 650,
+        price: 950,
         tags: ["breakfast"],
       },
       {
@@ -560,7 +560,7 @@ export const menu: MenuCategory[] = [
       { id: "shot-jager", name: L("Jägermeister (0.03)", "Jägermeister (0.03)", "Jägermeister (0.03)"), description: L("Jägermeister shot.", "Jägermeister shot.", "Jägermeister shot."), image: img("shot-jager"), price: 350, tags: ["alcohol"] },
 
       { id: "cocktail-sex", name: L("Sex on the beach", "Sex on the beach", "Sex on the beach"), description: L("Kokteyl.", "Cocktail.", "Koktel."), image: img("cocktail-sex"), price: 500, tags: ["alcohol", "cocktail"] },
-      { id: "cocktail-cuba", name: L("Cuba libre", "Cuba libre", "Cuba libre"), description: L("Kokteyl.", "Cocktail.", "Koktel."), image: img("cocktail-cuba"), price: 509, tags: ["alcohol", "cocktail"] },
+      { id: "cocktail-cuba", name: L("Cuba libre", "Cuba libre", "Cuba libre"), description: L("Kokteyl.", "Cocktail.", "Koktel."), image: img("cocktail-cuba"), price: 500, tags: ["alcohol", "cocktail"] },
       { id: "cocktail-longisland", name: L("Long island ice tea", "Long island iced tea", "Long island iced tea"), description: L("Kokteyl.", "Cocktail.", "Koktel."), image: img("cocktail-longisland"), price: 600, tags: ["alcohol", "cocktail"] },
       { id: "cocktail-cosmo", name: L("Cosmopolitan", "Cosmopolitan", "Cosmopolitan"), description: L("Kokteyl.", "Cocktail.", "Koktel."), image: img("cocktail-cosmo"), price: 500, tags: ["alcohol", "cocktail"] },
       { id: "cocktail-maitai", name: L("Mai tai", "Mai tai", "Mai tai"), description: L("Kokteyl.", "Cocktail.", "Koktel."), image: img("cocktail-maitai"), price: 400, tags: ["alcohol", "cocktail"] },
