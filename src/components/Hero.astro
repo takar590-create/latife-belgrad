@@ -7,25 +7,23 @@ import { site, phoneHref } from "@/lib/site";
 
 <section class="relative overflow-hidden rounded-3xl bg-white shadow-ring">
   <div class="relative h-[72vh] min-h-[560px] w-full">
-    <!-- SINGLE VIDEO (iOS autoplay için en stabil yaklaşım) -->
     <video
       id="heroVideo"
-      class="absolute inset-0 h-full w-full object-cover object-center
-             brightness-[0.78] saturate-[1.15]"
-      playsinline
-      muted
+      class="absolute inset-0 h-full w-full object-cover object-center brightness-[0.78] saturate-[1.15]"
       autoplay
+      muted
       loop
+      playsinline
       preload="auto"
       poster="/images/venue-1.jpg"
+      disablepictureinpicture
+      webkit-playsinline
     >
-      <!-- iOS-friendly first -->
       <source src="/videos/hero-ios.mp4" type="video/mp4" />
-      <!-- fallback (istersen bırak) -->
-      <source src="/videos/hero.mp4" type="video/mp4" />
+      <source src="/videos/latife-intro.mp4" type="video/mp4" />
     </video>
 
-    <!-- Premium readability overlay (BLUR YOK) -->
+    <!-- Premium overlay -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/65"></div>
     <div class="absolute inset-0 [box-shadow:inset_0_0_180px_rgba(0,0,0,.45)]"></div>
 
@@ -72,30 +70,28 @@ import { site, phoneHref } from "@/lib/site";
     </div>
   </div>
 
-  <!-- iOS Safari autoplay "kick" -->
   <script is:inline>
     (() => {
       const v = document.getElementById("heroVideo");
       if (!v) return;
 
-      // iOS için kritik
+      // iOS safari için kritik attribute'ları play öncesi zorla
       v.muted = true;
       v.defaultMuted = true;
       v.playsInline = true;
       v.setAttribute("muted", "");
       v.setAttribute("playsinline", "");
+      v.setAttribute("webkit-playsinline", "");
       v.setAttribute("autoplay", "");
 
       const tryPlay = () => v.play?.().catch(() => {});
-      // ilk yüklemede dene
       tryPlay();
 
-      // sayfa görünür olunca tekrar dene
       document.addEventListener("visibilitychange", () => {
         if (!document.hidden) tryPlay();
       });
 
-      // iOS bazen user gesture bekler; ilk dokunuşta da başlat
+      // iOS bazen user gesture ister
       const kick = () => {
         tryPlay();
         window.removeEventListener("touchstart", kick);
