@@ -3,61 +3,104 @@ import type { Lang } from "@/i18n";
 import { t } from "@/i18n";
 import { withLang } from "@/lib/paths";
 import { site, phoneHref } from "@/lib/site";
-import ImageCarousel from "@/components/ImageCarousel.astro";
-
-const { lang } = Astro.props as { lang: Lang };
-
-const slides = [
-  { src: "/images/venue-1.jpg", alt: "Latife interior" },
-  { src: "/images/coffee-1.jpg", alt: "Coffee at Latife" },
-  { src: "/images/venue-2.jpg", alt: "Latife bar" },
-  { src: "/images/front-1.jpg", alt: "Latife storefront" },
-  { src: "/images/venue-3.jpg", alt: "Latife detail" },
-  { src: "/images/coffee-2.jpg", alt: "Coffee set" },
-  { src: "/images/front-2.jpg", alt: "Latife entrance" },
-];
 ---
 
 <section class="relative overflow-hidden rounded-3xl bg-white shadow-ring">
-  <div
-    class="absolute inset-0 opacity-10"
-    style="background: radial-gradient(circle at 15% 20%, rgba(86,199,193,.8), transparent 60%),
-                    radial-gradient(circle at 85% 30%, rgba(214,198,164,.8), transparent 55%),
-                    radial-gradient(circle at 55% 85%, rgba(76,59,42,.7), transparent 60%);"
-  ></div>
+  <div class="relative h-[72vh] min-h-[560px] w-full">
+    <!-- Background: same video, cover + blur (fills the whole hero) -->
+    <video
+      class="absolute inset-0 h-full w-full object-cover object-center scale-[1.15]
+             blur-2xl brightness-[0.70] saturate-[1.15]"
+      src="/videos/hero.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    ></video>
 
-  <div class="relative grid gap-8 p-8 md:grid-cols-2 md:items-center md:p-12">
-    <div>
-      <div class="pill">{t(lang, "home.kicker")}</div>
+    <!-- Soft overlay + vignette for premium readability -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/18 to-black/65"></div>
+    <div class="absolute inset-0 [box-shadow:inset_0_0_180px_rgba(0,0,0,.55)]"></div>
 
-      <h1 class="mt-4 font-display text-4xl leading-tight md:text-5xl">
-        {t(lang, "home.title")}
-      </h1>
+    <!-- Foreground: the real video (no distortion) -->
+    <div class="absolute inset-0 flex items-center justify-center px-6 md:px-10">
+      <div
+        class="relative w-full max-w-5xl overflow-hidden rounded-3xl
+               bg-white/10 ring-1 ring-white/20 shadow-2xl backdrop-blur-xl"
+      >
+        <!-- video frame ratio: mobile looks like IG; desktop gets a wider stage -->
+        <div class="relative aspect-[9/16] sm:aspect-[16/9]">
+          <video
+            class="absolute inset-0 h-full w-full object-contain"
+            src="/videos/hero.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          ></video>
 
-      <p class="mt-4 max-w-prose text-muted">
-        {t(lang, "home.subtitle")}
-      </p>
-
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a class="btn btn-primary" href={site.mapsUrl} target="_blank" rel="noreferrer">
-          {t(lang, "cta.route")}
-        </a>
-        <a class="btn btn-ghost" href={phoneHref(site.phoneLocal)}>
-          {t(lang, "cta.call")}
-        </a>
-        <a class="btn btn-ghost" href={withLang(lang, "/menu")}>
-          {t(lang, "cta.menu")}
-        </a>
+          <!-- subtle highlight -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent"></div>
+        </div>
       </div>
-
-      <div class="mt-6 text-xs text-muted">{site.address}</div>
     </div>
 
-    <div>
-      <ImageCarousel slides={slides} ariaLabel="Latife gallery" />
-      <p class="mt-3 text-center text-xs text-muted">
-        (Mobilde parmağınla kaydırabilir, masaüstünde oklarla geçebilirsin.)
-      </p>
+    <!-- Content (on top) -->
+    <div class="relative z-10 grid h-full items-end p-6 md:p-10">
+      <div
+        class="max-w-2xl rounded-3xl bg-white/10 ring-1 ring-white/20
+               p-6 md:p-8 backdrop-blur-xl shadow-2xl"
+      >
+        <div class="pill bg-white/20 text-white ring-1 ring-white/25 backdrop-blur">
+          {t(lang, "home.kicker")}
+        </div>
+
+        <h1 class="mt-4 font-display text-4xl leading-tight text-white md:text-5xl">
+          {t(lang, "home.title")}
+        </h1>
+
+        <p class="mt-4 max-w-prose text-white/85">
+          {t(lang, "home.subtitle")}
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a class="btn btn-primary" href={site.mapsUrl} target="_blank" rel="noreferrer">
+            {t(lang, "cta.route")}
+          </a>
+          <a
+            class="btn btn-ghost ring-1 ring-white/25 bg-white/10 text-white hover:bg-white/20"
+            href={phoneHref(site.phoneLocal)}
+          >
+            {t(lang, "cta.call")}
+          </a>
+          <a
+            class="btn btn-ghost ring-1 ring-white/25 bg-white/10 text-white hover:bg-white/20"
+            href={withLang(lang, "/menu")}
+          >
+            {t(lang, "cta.menu")}
+          </a>
+        </div>
+
+        <div class="mt-6 text-xs text-white/75">{site.address}</div>
+      </div>
     </div>
   </div>
+
+  <!-- Autoplay / muted guarantee (both videos) -->
+  <script is:inline>
+    (() => {
+      const vids = Array.from(document.querySelectorAll("section video"));
+      vids.forEach((v) => {
+        v.muted = true;
+        v.defaultMuted = true;
+        const play = () => v.play?.().catch(() => {});
+        play();
+        document.addEventListener("visibilitychange", () => {
+          if (!document.hidden) play();
+        });
+      });
+    })();
+  </script>
 </section>

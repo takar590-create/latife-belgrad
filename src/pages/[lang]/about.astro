@@ -24,16 +24,52 @@ const { lang } = Astro.params as { lang: Lang };
       <p class="mt-4 text-muted">{t(lang, "about.p2")}</p>
     </div>
 
-    <div class="grid grid-cols-2 gap-3">
-      <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-white shadow-ring">
-        <img src="/images/venue-3.jpg" alt="Latife interior detail" class="h-full w-full object-cover" loading="lazy" />
-      </div>
-      <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-white shadow-ring">
-        <img src="/images/front-2.jpg" alt="Latife entrance" class="h-full w-full object-cover" loading="lazy" />
-      </div>
-      <div class="col-span-2 aspect-[16/9] overflow-hidden rounded-2xl bg-white shadow-ring">
-        <img src="/images/coffee-2.jpg" alt="Coffee" class="h-full w-full object-cover" loading="lazy" />
-      </div>
+    <!-- Premium Gallery -->
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+      <!-- 1 -->
+      <figure class="group relative overflow-hidden rounded-3xl bg-white shadow-ring">
+        <div class="relative aspect-[4/3] w-full">
+          <img
+            src="/images/venue-3.jpg"
+            alt="Latife interior detail"
+            class="absolute inset-0 h-full w-full object-cover object-center transition duration-500 group-hover:scale-[1.04]"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-gradient-to-tr from-black/18 via-transparent to-transparent"></div>
+          <div class="absolute inset-0 [box-shadow:inset_0_0_80px_rgba(0,0,0,.18)]"></div>
+        </div>
+      </figure>
+
+      <!-- 2 -->
+      <figure class="group relative overflow-hidden rounded-3xl bg-white shadow-ring">
+        <div class="relative aspect-[4/3] w-full">
+          <img
+            src="/images/front-2.jpg"
+            alt="Latife entrance"
+            class="absolute inset-0 h-full w-full object-cover object-center transition duration-500 group-hover:scale-[1.04]"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-gradient-to-tr from-black/18 via-transparent to-transparent"></div>
+          <div class="absolute inset-0 [box-shadow:inset_0_0_80px_rgba(0,0,0,.18)]"></div>
+        </div>
+      </figure>
+
+      <!-- 3 (Big) - Balanced size (no blur, no empty space) -->
+      <figure class="group relative overflow-hidden rounded-3xl bg-white shadow-ring md:col-span-2">
+        <div class="relative aspect-[16/9] w-full">
+          <img
+            src="/images/coffee-2.jpg"
+            alt="Coffee"
+            class="absolute inset-0 h-full w-full object-cover object-[50%_40%] transition duration-500 group-hover:scale-[1.02]"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-gradient-to-tr from-black/16 via-transparent to-transparent"></div>
+          <div class="absolute inset-0 [box-shadow:inset_0_0_90px_rgba(0,0,0,.16)]"></div>
+        </div>
+      </figure>
     </div>
   </div>
 </BaseLayout>

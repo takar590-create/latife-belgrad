@@ -14,7 +14,16 @@ const { lang, path } = Astro.props as { lang: Lang; path: string };
 >
   <div class="container-pad flex h-16 items-center justify-between gap-3">
     <a class="flex items-center gap-3" href={withLang(lang, "/")} aria-label="Home">
-      <div class="h-10 w-10 rounded-full bg-brand shadow-ring"></div>
+      <!-- LOGO -->
+      <img
+        src="/images/logo.jpg"
+        alt={`${site.shortName} logo`}
+        width="40"
+        height="40"
+        class="h-10 w-10 rounded-full object-cover shadow-ring bg-white"
+        loading="eager"
+        decoding="async"
+      />
 
       <div class="leading-tight">
         <div class="font-display text-lg">{site.shortName}</div>
