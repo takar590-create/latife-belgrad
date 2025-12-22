@@ -2,9 +2,17 @@
 import type { Lang } from "../i18n/i18n";
 import { t } from "../i18n/i18n";
 import { withLang } from "../lib/paths";
-import { menu, type MenuCategoryKey, type Price } from "../data/menu";
+import {
+  menu,
+  getText,
+  type MenuCategoryKey,
+  type Price,
+} from "../data/menu";
 
 const { lang } = Astro.props as { lang: Lang };
+
+// ✅ lang -> getText helper expects "tr|en|sr"
+const langKey = lang as "tr" | "en" | "sr";
 
 function priceToText(p: Price): string {
   if (typeof p === "number") return `${p} RSD`;
@@ -35,14 +43,22 @@ function firstNonAlcoholItem(catKey: MenuCategoryKey) {
   if (!cat) return null;
 
   const items = cat.items || [];
-  const nonAlcohol = items.find((x) => !(Array.isArray(x.tags) && x.tags.includes("alcohol")));
+  const nonAlcohol = items.find(
+    (x) => !(Array.isArray(x.tags) && x.tags.includes("alcohol"))
+  );
   return nonAlcohol ?? items[0] ?? null;
 }
 
-const picks = (["breakfast", "hot", "cold", "desserts"] as MenuCategoryKey[]).map((key) => ({
-  key,
-  item: firstNonAlcoholItem(key),
-}));
+// ✅ Picks: her karta string name/desc hazırla (object basılmasın)
+const picks = (["breakfast", "hot", "cold", "desserts"] as MenuCategoryKey[]).map(
+  (key) => {
+    const item = firstNonAlcoholItem(key);
+    const name = item ? getText(langKey, item.name) : "";
+    const desc = item ? getText(langKey, item.description) : "";
+
+    return { key, item, name, desc };
+  }
+);
 ---
 
 <section class="mt-12">
@@ -97,8 +113,9 @@ const picks = (["breakfast", "hot", "cold", "desserts"] as MenuCategoryKey[]).ma
                 <div class="text-xs font-medium text-muted">
                   {t(lang, catTitleKey(p.key))}
                 </div>
+
                 <div class="mt-1 font-medium leading-snug">
-                  {p.item?.name ?? t(lang, catDescKey(p.key))}
+                  {p.item ? (p.name || t(lang, catDescKey(p.key))) : t(lang, catDescKey(p.key))}
                 </div>
               </div>
 
@@ -121,10 +138,9 @@ const picks = (["breakfast", "hot", "cold", "desserts"] as MenuCategoryKey[]).ma
                 overflow: hidden;
               "
             >
-              {p.item?.description ?? t(lang, catDescKey(p.key))}
+              {p.item ? (p.desc || t(lang, catDescKey(p.key))) : t(lang, catDescKey(p.key))}
             </p>
 
-            <!-- FIX: Media artık tek container, gradient + image aynı katmanda -->
             <div class="mt-4 overflow-hidden rounded-2xl">
               <div
                 class="relative h-24 w-full overflow-hidden"
@@ -134,7 +150,7 @@ const picks = (["breakfast", "hot", "cold", "desserts"] as MenuCategoryKey[]).ma
                 {p.item?.image ? (
                   <img
                     src={p.item.image}
-                    alt={p.item?.name ?? t(lang, catTitleKey(p.key))}
+                    alt={p.item ? (p.name || t(lang, catTitleKey(p.key))) : t(lang, catTitleKey(p.key))}
                     class="absolute inset-0 h-full w-full object-cover object-center"
                     loading="lazy"
                     decoding="async"
