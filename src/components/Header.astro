@@ -2,7 +2,7 @@
 import type { Lang } from "@/i18n";
 import { t } from "@/i18n";
 import { withLang } from "@/lib/paths";
-import { site, phoneHref } from "@/lib/site";
+import { site } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 
 const { lang, path } = Astro.props as { lang: Lang; path: string };
@@ -45,15 +45,7 @@ const { lang, path } = Astro.props as { lang: Lang; path: string };
     </nav>
 
     <div class="flex items-center gap-2">
-      <a class="btn btn-ghost hidden sm:inline-flex" href={phoneHref(site.phoneLocal)}>
-        {t(lang, "cta.call")}
-      </a>
-
-      <div class="hidden sm:block">
-        <a class="btn btn-primary" href={site.mapsUrl} target="_blank" rel="noreferrer">
-          {t(lang, "cta.route")}
-        </a>
-      </div>
+      <!-- ✅ Call/Route butonları kaldırıldı. İletişim sağ alttaki floating butondan yapılacak -->
 
       <!-- Mobile hamburger menu -->
       <details class="relative md:hidden">

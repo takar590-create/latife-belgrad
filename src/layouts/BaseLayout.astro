@@ -4,6 +4,7 @@ import "@/styles/global.css";
 import type { Lang } from "@/i18n";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import FloatingContact from "@/components/FloatingContact.astro";
 
 const { title, description, lang, path } = Astro.props as {
   title: string;
@@ -42,5 +43,8 @@ const { title, description, lang, path } = Astro.props as {
     </main>
 
     <Footer lang={lang} />
+
+    <!-- ✅ Sağ altta sürüklenebilir iletişim butonu -->
+    <FloatingContact lang={lang} />
   </body>
 </html>

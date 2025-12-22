@@ -30,21 +30,13 @@ const DICT: All = {
     "menu.searchInCategory": "Menüde ara...",
     "menu.empty": "Sonuç bulunamadı.",
 
-    // (Eski key'leri istersen tutarsın; biz yeni düzende bunları kullanmayabiliriz)
-    "menu.combo": "Combo Menü",
-    "menu.coffee": "Kahve",
-    "menu.tea": "Çay",
-    "menu.soft": "Soğuk içecekler",
-    "menu.food": "Yiyecek & Tatlılar",
-    "menu.alcohol": "Alkollü içecekler",
-
     // Menü kategori sayfası UI
     "menu.categoriesKicker": "Kategorilerden seç ve menüyü keşfet.",
     "menu.category": "Kategori",
     "menu.openCategory": "Menüye gir",
     "menu.back": "Menü",
 
-    // Yeni 4 kategori
+    // 4 kategori
     "menu.cat.breakfast": "Kahvaltı",
     "menu.cat.hot": "Sıcak İçecekler",
     "menu.cat.cold": "Soğuk İçecekler",
@@ -54,6 +46,22 @@ const DICT: All = {
     "menu.cat.hotDesc": "Kahve & sıcak içecekler.",
     "menu.cat.coldDesc": "Soğuk kahveler ve ferahlatan seçenekler.",
     "menu.cat.dessertsDesc": "Tatlı molası için favoriler.",
+
+    // Alkol başlığı
+    "menu.alcohol": "Alkollü içecekler",
+
+    // ✅ Menü item etiketleri (tags)
+    "menu.tag.combo": "Combo",
+    "menu.tag.snack": "Atıştırmalık",
+    "menu.tag.breakfast": "Kahvaltı",
+    "menu.tag.soft": "Soft drink",
+    "menu.tag.lemonade": "Limonata",
+    "menu.tag.frozen": "Frozen",
+    "menu.tag.alcohol": "Alkollü",
+    "menu.tag.cocktail": "Kokteyl",
+
+    // ✅ Para birimi
+    "currency.rsd": "RSD",
 
     "about.title": "Hakkımızda",
     "about.p1":
@@ -74,6 +82,12 @@ const DICT: All = {
     "day.fri": "Cum",
     "day.sat": "Cmt",
     "day.sun": "Paz",
+
+    "fab.contact": "Bize ulaşın",
+
+    "floating.contact.title": "Bize ulaşın",
+"floating.contact.tooltip": "Bize ulaşın",
+
   },
 
   sr: {
@@ -98,21 +112,13 @@ const DICT: All = {
     "menu.searchInCategory": "Pretraži meni...",
     "menu.empty": "Nema rezultata.",
 
-    // (Eski key'ler)
-    "menu.combo": "Combo meni",
-    "menu.coffee": "Kafa",
-    "menu.tea": "Čaj",
-    "menu.soft": "Hladna pića",
-    "menu.food": "Hrana & Dezerti",
-    "menu.alcohol": "Alkoholna pića",
-
     // Menü kategori sayfası UI
     "menu.categoriesKicker": "Izaberite kategoriju i istražite meni.",
     "menu.category": "Kategorija",
     "menu.openCategory": "Otvori meni",
     "menu.back": "Meni",
 
-    // Yeni 4 kategori
+    // 4 kategori
     "menu.cat.breakfast": "Doručak",
     "menu.cat.hot": "Topli napici",
     "menu.cat.cold": "Hladni napici",
@@ -122,6 +128,22 @@ const DICT: All = {
     "menu.cat.hotDesc": "Kafa i topli favoriti.",
     "menu.cat.coldDesc": "Ledene kafe i osvežavajući izbor.",
     "menu.cat.dessertsDesc": "Slatke poslastice koje ćete voleti.",
+
+    // Alkol başlığı
+    "menu.alcohol": "Alkoholna pića",
+
+    // ✅ Menü item etiketleri (tags)
+    "menu.tag.combo": "Kombinacija",
+    "menu.tag.snack": "Grickalice",
+    "menu.tag.breakfast": "Doručak",
+    "menu.tag.soft": "Bezalkoholno",
+    "menu.tag.lemonade": "Limunada",
+    "menu.tag.frozen": "Frozen",
+    "menu.tag.alcohol": "Alkohol",
+    "menu.tag.cocktail": "Koktel",
+
+    // ✅ Para birimi
+    "currency.rsd": "RSD",
 
     "about.title": "O nama",
     "about.p1":
@@ -142,6 +164,12 @@ const DICT: All = {
     "day.fri": "Pet",
     "day.sat": "Sub",
     "day.sun": "Ned",
+
+    "fab.contact": "Kontaktirajte nas",
+
+    "floating.contact.title": "Kontaktirajte nas",
+"floating.contact.tooltip": "Kontaktirajte nas",
+
   },
 
   en: {
@@ -163,16 +191,8 @@ const DICT: All = {
     "menu.title": "Menu",
     "menu.note": "Prices are in RSD. Menu items may change seasonally.",
     "menu.search": "Search the menu...",
-    "menu.searchInCategory": "Search in menu...",
+    "menu.searchInCategory": "Search the menu...",
     "menu.empty": "No results found.",
-
-    // (Eski key'ler)
-    "menu.combo": "Combo Menu",
-    "menu.coffee": "Coffee",
-    "menu.tea": "Tea",
-    "menu.soft": "Cold drinks",
-    "menu.food": "Food & Desserts",
-    "menu.alcohol": "Alcoholic drinks",
 
     // Menu category page UI
     "menu.categoriesKicker": "Choose a category and explore the menu.",
@@ -180,7 +200,7 @@ const DICT: All = {
     "menu.openCategory": "Open menu",
     "menu.back": "Menu",
 
-    // New 4 categories
+    // 4 categories
     "menu.cat.breakfast": "Breakfast",
     "menu.cat.hot": "Hot drinks",
     "menu.cat.cold": "Cold drinks",
@@ -190,6 +210,22 @@ const DICT: All = {
     "menu.cat.hotDesc": "Coffee & hot favorites.",
     "menu.cat.coldDesc": "Iced coffees and refreshing picks.",
     "menu.cat.dessertsDesc": "Sweet treats you’ll love.",
+
+    // Alcohol section title
+    "menu.alcohol": "Alcoholic drinks",
+
+    // ✅ Menu item tags
+    "menu.tag.combo": "Combo",
+    "menu.tag.snack": "Snack",
+    "menu.tag.breakfast": "Breakfast",
+    "menu.tag.soft": "Soft drink",
+    "menu.tag.lemonade": "Lemonade",
+    "menu.tag.frozen": "Frozen",
+    "menu.tag.alcohol": "Alcohol",
+    "menu.tag.cocktail": "Cocktail",
+
+    // ✅ Currency
+    "currency.rsd": "RSD",
 
     "about.title": "About",
     "about.p1":
@@ -210,6 +246,12 @@ const DICT: All = {
     "day.fri": "Fri",
     "day.sat": "Sat",
     "day.sun": "Sun",
+
+    "fab.contact": "Contact us",
+
+    "floating.contact.title": "Contact us",
+"floating.contact.tooltip": "Contact us",
+
   },
 };
 
