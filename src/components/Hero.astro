@@ -9,6 +9,7 @@ import { site, phoneHref } from "@/lib/site";
   <div class="relative h-[72vh] min-h-[560px] w-full">
     <!-- Background: same video, cover + blur (fills the whole hero) -->
     <video
+      id="heroBgVideo"
       class="absolute inset-0 h-full w-full object-cover object-center scale-[1.15]
              blur-2xl brightness-[0.70] saturate-[1.15]"
       src="/videos/hero.mp4"
@@ -16,7 +17,11 @@ import { site, phoneHref } from "@/lib/site";
       muted
       loop
       playsinline
-      preload="metadata"
+      preload="auto"
+      poster="/images/venue-1.jpg"
+      aria-hidden="true"
+      disablepictureinpicture
+      webkit-playsinline
     ></video>
 
     <!-- Soft overlay + vignette for premium readability -->
@@ -32,13 +37,18 @@ import { site, phoneHref } from "@/lib/site";
         <!-- video frame ratio: mobile looks like IG; desktop gets a wider stage -->
         <div class="relative aspect-[9/16] sm:aspect-[16/9]">
           <video
+            id="heroMainVideo"
             class="absolute inset-0 h-full w-full object-contain"
             src="/videos/hero.mp4"
             autoplay
             muted
             loop
             playsinline
-            preload="metadata"
+            preload="auto"
+            poster="/images/venue-1.jpg"
+            aria-hidden="true"
+            disablepictureinpicture
+            webkit-playsinline
           ></video>
 
           <!-- subtle highlight -->
@@ -88,19 +98,58 @@ import { site, phoneHref } from "@/lib/site";
     </div>
   </div>
 
-  <!-- Autoplay / muted guarantee (both videos) -->
+  <!-- Autoplay / muted guarantee (iOS/Safari friendly) -->
   <script is:inline>
     (() => {
-      const vids = Array.from(document.querySelectorAll("section video"));
+      const vids = [
+        document.getElementById("heroBgVideo"),
+        document.getElementById("heroMainVideo"),
+      ].filter(Boolean);
+
+      const prep = (v) => {
+        // iOS/Safari: play() öncesi attribute zorla
+        try {
+          v.muted = true;
+          v.defaultMuted = true;
+          v.setAttribute("muted", "");
+          v.setAttribute("playsinline", "");
+          v.setAttribute("webkit-playsinline", "");
+          v.playsInline = true;
+          v.setAttribute("preload", "auto");
+          v.setAttribute("disablepictureinpicture", "");
+        } catch {}
+      };
+
+      const tryPlay = (v) => {
+        prep(v);
+        const p = v.play?.();
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      };
+
+      // İlk yükleme denemesi
       vids.forEach((v) => {
-        v.muted = true;
-        v.defaultMuted = true;
-        const play = () => v.play?.().catch(() => {});
-        play();
-        document.addEventListener("visibilitychange", () => {
-          if (!document.hidden) play();
-        });
+        tryPlay(v);
+
+        // Video hazır olunca tekrar dene
+        v.addEventListener("canplay", () => tryPlay(v), { once: true });
+
+        // Safari BFCache (geri-ileri) durumunda tekrar dene
+        window.addEventListener("pageshow", () => tryPlay(v));
       });
+
+      // Sekme geri gelince tekrar dene
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) vids.forEach((v) => tryPlay(v));
+      });
+
+      // iOS bazen kullanıcı etkileşimi ister
+      const onFirstInteraction = () => {
+        vids.forEach((v) => tryPlay(v));
+        window.removeEventListener("touchstart", onFirstInteraction);
+        window.removeEventListener("click", onFirstInteraction);
+      };
+      window.addEventListener("touchstart", onFirstInteraction, { passive: true });
+      window.addEventListener("click", onFirstInteraction);
     })();
   </script>
 </section>
