@@ -6,33 +6,51 @@ import { site, phoneHref } from "@/lib/site";
 ---
 
 <section class="relative overflow-hidden rounded-3xl bg-white shadow-ring">
-  <div class="relative h-[72vh] min-h-[560px] w-full">
+  <div
+    class="relative h-[72vh] min-h-[560px] w-full bg-black"
+    style="background-image: url('/images/venue-1.jpg'); background-size: cover; background-position: center;"
+  >
+    <!-- VIDEO (NO FILTERS for iOS Safari reliability) -->
     <video
       id="heroVideo"
-      class="absolute inset-0 h-full w-full object-cover object-center brightness-[0.78] saturate-[1.15]"
-      autoplay
-      muted
-      loop
+      class="absolute inset-0 h-full w-full object-cover object-center"
       playsinline
+      webkit-playsinline
+      muted
+      autoplay
+      loop
       preload="auto"
       poster="/images/venue-1.jpg"
       disablepictureinpicture
-      webkit-playsinline
     >
       <source src="/videos/hero-ios.mp4" type="video/mp4" />
       <source src="/videos/latife-intro.mp4" type="video/mp4" />
     </video>
 
-    <!-- Premium overlay -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/65"></div>
-    <div class="absolute inset-0 [box-shadow:inset_0_0_180px_rgba(0,0,0,.45)]"></div>
+    <!-- Premium overlay (filters yerine overlay) -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/18 to-black/70"></div>
+    <div class="absolute inset-0 [box-shadow:inset_0_0_220px_rgba(0,0,0,.55)]"></div>
+
+    <!-- Play fallback (autoplay olmazsa görünür) -->
+    <button
+      id="heroPlayBtn"
+      type="button"
+      class="absolute left-1/2 top-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2
+             rounded-full bg-white/15 px-6 py-4 text-white ring-1 ring-white/30
+             backdrop-blur-xl shadow-2xl active:scale-[0.98]"
+      aria-label="Play video"
+    >
+      <span class="inline-flex items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center rounded-full bg-white/20 ring-1 ring-white/25">
+          ▶
+        </span>
+        <span class="text-sm font-medium">Play</span>
+      </span>
+    </button>
 
     <!-- Content -->
     <div class="relative z-10 grid h-full items-end p-6 md:p-10">
-      <div
-        class="max-w-2xl rounded-3xl bg-white/10 ring-1 ring-white/20
-               p-6 md:p-8 backdrop-blur-xl shadow-2xl"
-      >
+      <div class="max-w-2xl rounded-3xl bg-white/10 ring-1 ring-white/20 p-6 md:p-8 backdrop-blur-xl shadow-2xl">
         <div class="pill bg-white/20 text-white ring-1 ring-white/25 backdrop-blur">
           {t(lang, "home.kicker")}
         </div>
@@ -50,17 +68,11 @@ import { site, phoneHref } from "@/lib/site";
             {t(lang, "cta.route")}
           </a>
 
-          <a
-            class="btn btn-ghost ring-1 ring-white/25 bg-white/10 text-white hover:bg-white/20"
-            href={phoneHref(site.phoneLocal)}
-          >
+          <a class="btn btn-ghost ring-1 ring-white/25 bg-white/10 text-white hover:bg-white/20" href={phoneHref(site.phoneLocal)}>
             {t(lang, "cta.call")}
           </a>
 
-          <a
-            class="btn btn-ghost ring-1 ring-white/25 bg-white/10 text-white hover:bg-white/20"
-            href={withLang(lang, "/menu")}
-          >
+          <a class="btn btn-ghost ring-1 ring-white/25 bg-white/10 text-white hover:bg-white/20" href={withLang(lang, "/menu")}>
             {t(lang, "cta.menu")}
           </a>
         </div>
@@ -73,32 +85,47 @@ import { site, phoneHref } from "@/lib/site";
   <script is:inline>
     (() => {
       const v = document.getElementById("heroVideo");
-      if (!v) return;
+      const btn = document.getElementById("heroPlayBtn");
+      if (!v || !btn) return;
 
-      // iOS safari için kritik attribute'ları play öncesi zorla
-      v.muted = true;
-      v.defaultMuted = true;
-      v.playsInline = true;
-      v.setAttribute("muted", "");
-      v.setAttribute("playsinline", "");
-      v.setAttribute("webkit-playsinline", "");
-      v.setAttribute("autoplay", "");
+      const prep = () => {
+        v.muted = true;
+        v.defaultMuted = true;
+        v.playsInline = true;
+        v.setAttribute("muted", "");
+        v.setAttribute("playsinline", "");
+        v.setAttribute("webkit-playsinline", "");
+        v.setAttribute("autoplay", "");
+      };
 
-      const tryPlay = () => v.play?.().catch(() => {});
-      tryPlay();
+      const showBtn = () => btn.classList.remove("hidden");
+      const hideBtn = () => btn.classList.add("hidden");
 
-      document.addEventListener("visibilitychange", () => {
-        if (!document.hidden) tryPlay();
+      const tryAutoPlay = () => {
+        prep();
+        const p = v.play?.();
+        if (p && typeof p.catch === "function") {
+          p.then(() => hideBtn()).catch(() => showBtn());
+        }
+      };
+
+      // autoplay dene
+      tryAutoPlay();
+
+      // video gerçekten oynarsa butonu gizle
+      v.addEventListener("playing", hideBtn);
+
+      // autoplay reddedilirse (iOS policy), kullanıcı dokunuşuyla başlat
+      btn.addEventListener("click", () => {
+        prep();
+        v.play?.().then(() => hideBtn()).catch(() => showBtn());
       });
 
-      // iOS bazen user gesture ister
-      const kick = () => {
-        tryPlay();
-        window.removeEventListener("touchstart", kick);
-        window.removeEventListener("click", kick);
-      };
-      window.addEventListener("touchstart", kick, { passive: true });
-      window.addEventListener("click", kick);
+      // sekme geri gelince tekrar dene
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) tryAutoPlay();
+      });
+      window.addEventListener("pageshow", tryAutoPlay);
     })();
   </script>
 </section>
