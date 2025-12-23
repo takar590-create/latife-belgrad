@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
+  site: 'https://www.latifebelgrad.com' ,
   integrations: [tailwind({
     applyBaseStyles: false,
   }), sitemap()],
