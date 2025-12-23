@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://latifebelgrad.com/tr/sitemap-index.xml
