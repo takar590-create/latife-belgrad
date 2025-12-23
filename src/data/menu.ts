@@ -80,7 +80,7 @@ export const menu: MenuCategory[] = [
           "Bogat doručak tanjir za odličan početak dana."
         ),
         image: img("breakfast-plate"),
-        price: 950,
+        price: 350,
         tags: ["breakfast"],
       },
       {
